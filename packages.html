@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View Prodizy Tech packages and pricing for web development, digital marketing, SEO, and custom tech solutions.">
+    <title>Packages & Pricing | Affordable Digital Solutions – Prodizy Tech</title>
+    <meta property="og:title" content="Packages & Pricing – Prodizy Tech">
+    <meta property="og:description" content="Transparent pricing packages for web development, digital marketing, SEO, and tech solutions.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://prodizytech.com/packages">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="pages.css">
+    <link rel="stylesheet" href="navbar.css">
+    <script src="components.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="particles" id="particles"></div>
+        <div class="container">
+            <h1 class="page-title">Our Packages</h1>
+            <p class="page-subtitle">TAILORED SOLUTIONS FOR YOUR BUSINESS NEEDS</p>
+        </div>
+    </section>
+
+    <!-- Packages Content -->
+    <section class="page-content">
+        <div class="container">
+            <div class="intro-text">
+                <p>Choose from our carefully crafted packages designed to fit businesses of all sizes. Each package is flexible and can be customized to meet your specific requirements.</p>
+            </div>
+
+            <!-- Pricing Toggle -->
+            <div class="pricing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="pricingToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Annual <span class="discount-badge">Save 20%</span></span>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="pricing-grid">
+                <!-- Starter Package -->
+                <div class="pricing-card">
+                    <div class="package-badge">STARTER</div>
+                    <h3>Starter Package</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount monthly-price">499</span>
+                        <span class="amount annual-price" style="display: none;">399</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="package-description">Perfect for startups and small businesses getting started</p>
+                    <ul class="package-features">
+                        <li>✓ 5-Page Custom Website</li>
+                        <li>✓ Responsive Design</li>
+                        <li>✓ Basic SEO Setup</li>
+                        <li>✓ Contact Form Integration</li>
+                        <li>✓ Social Media Integration</li>
+                        <li>✓ 3 Months Support</li>
+                        <li>✓ Google Analytics Setup</li>
+                        <li>✓ 1 Round of Revisions</li>
+                    </ul>
+                    <button class="package-btn">Choose Plan</button>
+                </div>
+
+                <!-- Professional Package -->
+                <div class="pricing-card popular">
+                    <div class="package-badge popular-badge">MOST POPULAR</div>
+                    <h3>Professional Package</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount monthly-price">1,299</span>
+                        <span class="amount annual-price" style="display: none;">1,039</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="package-description">Ideal for growing businesses needing advanced features</p>
+                    <ul class="package-features">
+                        <li>✓ 10-Page Custom Website</li>
+                        <li>✓ Advanced Responsive Design</li>
+                        <li>✓ Complete SEO Optimization</li>
+                        <li>✓ CMS Integration</li>
+                        <li>✓ E-Commerce Functionality</li>
+                        <li>✓ 6 Months Support</li>
+                        <li>✓ Email Marketing Setup</li>
+                        <li>✓ Security Features</li>
+                        <li>✓ Performance Optimization</li>
+                        <li>✓ 3 Rounds of Revisions</li>
+                    </ul>
+                    <button class="package-btn">Choose Plan</button>
+                </div>
+
+                <!-- Enterprise Package -->
+                <div class="pricing-card">
+                    <div class="package-badge">ENTERPRISE</div>
+                    <h3>Enterprise Package</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount monthly-price">2,999</span>
+                        <span class="amount annual-price" style="display: none;">2,399</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="package-description">Complete solution for large-scale businesses</p>
+                    <ul class="package-features">
+                        <li>✓ Unlimited Pages</li>
+                        <li>✓ Custom Web Application</li>
+                        <li>✓ Advanced SEO & Marketing</li>
+                        <li>✓ Custom CMS Development</li>
+                        <li>✓ Full E-Commerce Platform</li>
+                        <li>✓ 12 Months Priority Support</li>
+                        <li>✓ API Development</li>
+                        <li>✓ Database Management</li>
+                        <li>✓ Cloud Infrastructure</li>
+                        <li>✓ Advanced Security</li>
+                        <li>✓ Unlimited Revisions</li>
+                        <li>✓ Dedicated Account Manager</li>
+                    </ul>
+                    <button class="package-btn">Choose Plan</button>
+                </div>
+            </div>
+
+            <!-- Custom Package -->
+            <div class="custom-package-section">
+                <div class="custom-package-card">
+                    <div class="custom-icon">⚙️</div>
+                    <h3>Custom Package</h3>
+                    <p>Need something unique? We'll create a tailored solution that perfectly fits your business requirements and budget.</p>
+                    <button class="custom-btn" onclick="window.location.href='contact.html'">Request Custom Quote</button>
+                </div>
+            </div>
+
+            <!-- Add-Ons Section -->
+            <div class="addons-section">
+                <h2 class="section-heading centered">Available Add-Ons</h2>
+                <div class="addons-grid">
+                    <div class="addon-card">
+                        <div class="addon-icon">📱</div>
+                        <h4>Mobile App</h4>
+                        <p class="addon-price">+$1,500/month</p>
+                        <p>iOS and Android native or cross-platform application</p>
+                    </div>
+                    <div class="addon-card">
+                        <div class="addon-icon">🔍</div>
+                        <h4>Advanced SEO</h4>
+                        <p class="addon-price">+$500/month</p>
+                        <p>Comprehensive SEO strategy and optimization</p>
+                    </div>
+                    <div class="addon-card">
+                        <div class="addon-icon">📊</div>
+                        <h4>Analytics Dashboard</h4>
+                        <p class="addon-price">+$300/month</p>
+                        <p>Custom analytics and reporting dashboard</p>
+                    </div>
+                    <div class="addon-card">
+                        <div class="addon-icon">🎨</div>
+                        <h4>Brand Design</h4>
+                        <p class="addon-price">+$800 one-time</p>
+                        <p>Complete brand identity and design system</p>
+                    </div>
+                    <div class="addon-card">
+                        <div class="addon-icon">☁️</div>
+                        <h4>Cloud Hosting</h4>
+                        <p class="addon-price">+$200/month</p>
+                        <p>Premium cloud hosting with auto-scaling</p>
+                    </div>
+                    <div class="addon-card">
+                        <div class="addon-icon">🤖</div>
+                        <h4>AI Chatbot</h4>
+                        <p class="addon-price">+$400/month</p>
+                        <p>Intelligent customer support chatbot</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-section">
+                <h2 class="section-heading centered">Package Comparison</h2>
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Features</th>
+                                <th>Starter</th>
+                                <th>Professional</th>
+                                <th>Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Number of Pages</td>
+                                <td>5</td>
+                                <td>10</td>
+                                <td>Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td>Responsive Design</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr>
+                                <td>SEO Optimization</td>
+                                <td>Basic</td>
+                                <td>Complete</td>
+                                <td>Advanced</td>
+                            </tr>
+                            <tr>
+                                <td>E-Commerce</td>
+                                <td>—</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr>
+                                <td>CMS Integration</td>
+                                <td>—</td>
+                                <td>✓</td>
+                                <td>Custom</td>
+                            </tr>
+                            <tr>
+                                <td>Support Period</td>
+                                <td>3 Months</td>
+                                <td>6 Months</td>
+                                <td>12 Months</td>
+                            </tr>
+                            <tr>
+                                <td>Revisions</td>
+                                <td>1 Round</td>
+                                <td>3 Rounds</td>
+                                <td>Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td>Priority Support</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>✓</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Still Not Sure?</h2>
+            <p>Let's discuss which package is right for your business</p>
+            <button class="cta-button" onclick="window.location.href='contact.html'">Schedule a Consultation</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="index.js"></script>
+    <script>
+        // Pricing toggle functionality
+        const pricingToggle = document.getElementById('pricingToggle');
+        const monthlyPrices = document.querySelectorAll('.monthly-price');
+        const annualPrices = document.querySelectorAll('.annual-price');
+
+        pricingToggle.addEventListener('change', function() {
+            if (this.checked) {
+                monthlyPrices.forEach(price => price.style.display = 'none');
+                annualPrices.forEach(price => price.style.display = 'inline');
+            } else {
+                monthlyPrices.forEach(price => price.style.display = 'inline');
+                annualPrices.forEach(price => price.style.display = 'none');
+            }
+        });
+    </script>
+</body>
+</html>

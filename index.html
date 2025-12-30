@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prodizy Tech helps businesses grow with digital marketing, web development, SEO, and modern tech solutions built for real results.">
+    <meta property="og:title" content="Prodizy Tech – Digital Marketing & Web Solutions">
+    <meta property="og:description" content="We build websites, run digital marketing, and deliver tech solutions that help businesses scale.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://prodizytech.com/">
+    <title>Prodizy Tech | Digital Marketing, Web Development & Tech Solutions</title>
+    <link rel="canonical" href="https://prodizytech.com/">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="toggle.css">
+    <script src="components.js"></script>
+</head>
+<body>
+    
+    <div id="navbar-placeholder"></div>
+
+
+    <!-- Hero Section with Creative Design -->
+    <section class="hero">
+        <!-- Animated Background -->
+        <div class="hero-background">
+            <div class="grid-overlay"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <canvas id="particleCanvas"></canvas>
+        
+        <div class="hero-content">
+            <!-- Floating Logo with Glow Effect -->
+            <div class="logo-showcase">
+                <div class="logo-glow-ring"></div>
+                <div class="logo-container">
+                    <!-- REPLACE logo.png WITH YOUR LOGO IMAGE -->
+                    <img src="logo.png" alt="Prodizy Tech" class="hero-logo">
+                </div>
+                <div class="logo-particles">
+                    <span class="logo-spark"></span>
+                    <span class="logo-spark"></span>
+                    <span class="logo-spark"></span>
+                    <span class="logo-spark"></span>
+                </div>
+            </div>
+            
+            <!-- Title with Glitch Effect -->
+            <h1 class="hero-title" data-text="PRODIZY TECH">
+                PRODIZY TECH
+            </h1>
+            
+            <!-- Animated Subtitle -->
+            <div class="hero-subtitle-wrapper">
+                <p class="hero-subtitle typing-text">Web, App and Digital Marketing Solutions</p>
+                <div class="subtitle-underline"></div>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="hero-cta-group">
+                <button onclick="window.location.href='services.html'" class="hero-cta primary">
+                    <span>VIEW SERVICES</span>
+                    <div class="cta-shine"></div>
+                </button>
+                <button onclick="window.location.href='packages.html'" class="hero-cta secondary">
+                    <span>VIEW PACKAGES</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Floating Tech Elements -->
+        <div class="floating-elements">
+            <div class="tech-icon icon-1">{ }</div>
+            <div class="tech-icon icon-2">&lt;/&gt;</div>
+            <div class="tech-icon icon-3">AI</div>
+            <div class="tech-icon icon-4">∞</div>
+            <div class="tech-icon icon-5">◇</div>
+            <div class="tech-icon icon-6">⚡</div>
+        </div>
+    </section>
+
+    <!-- Stats Bar with Metallic Design -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" data-count="500">0</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="200">0</div>
+                    <div class="stat-label">Clients</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="50">0</div>
+                    <div class="stat-label">Team</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="10">0</div>
+                    <div class="stat-label">Years</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section with 3D Cards -->
+    <section class="what-we-do">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">WHAT WE DO</span>
+                <h2 class="section-title">Transforming Ideas Into Reality</h2>
+                <p class="section-description">We create cutting-edge digital solutions that empower businesses to thrive in the modern world</p>
+            </div>
+
+            <div class="services-showcase">
+                <!-- Service Card 1 -->
+                <div class="service-showcase-card">
+                    <div class="card-glow"></div>
+                    <div class="card-number">01</div>
+                    <div class="card-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <rect x="10" y="10" width="40" height="40" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 20 L40 40 M40 20 L20 40" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with cutting-edge technologies</p>
+                    <a href="services.html" class="card-link">Explore More →</a>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-showcase-card">
+                    <div class="card-glow"></div>
+                    <div class="card-number">02</div>
+                    <div class="card-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="20" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="30" cy="30" r="5" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>Mobile Apps</h3>
+                    <p>Native and cross-platform mobile solutions for iOS and Android</p>
+                    <a href="services.html" class="card-link">Explore More →</a>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-showcase-card">
+                    <div class="card-glow"></div>
+                    <div class="card-number">03</div>
+                    <div class="card-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <path d="M15 25 L30 15 L45 25 L45 45 L15 45 Z" stroke="currentColor" stroke-width="2"/>
+                            <rect x="25" y="30" width="10" height="15" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and migration services for enterprises</p>
+                    <a href="services.html" class="card-link">Explore More →</a>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-showcase-card">
+                    <div class="card-glow"></div>
+                    <div class="card-number">04</div>
+                    <div class="card-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <path d="M10 30 Q30 10 50 30 Q30 50 10 30" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>AI & Innovation</h3>
+                    <p>Intelligent solutions powered by artificial intelligence and machine learning</p>
+                    <a href="services.html" class="card-link">Explore More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us with Parallax -->
+    <section class="why-choose">
+        <div class="parallax-bg"></div>
+        <div class="container">
+            <div class="why-content">
+                <div class="why-text">
+                    <span class="section-tag">WHY CHOOSE US</span>
+                    <h2>We Don't Just Build<br>We Innovate</h2>
+                    <p>At Prodizy Tech, we combine creative thinking with technical expertise to deliver solutions that exceed expectations. Our team of dedicated professionals is committed to your success.</p>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <span>10+ Years of Excellence</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <span>Award-Winning Team</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <span>24/7 Support</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <span>100% Client Satisfaction</span>
+                        </li>
+                    </ul>
+                    <button class="cta-btn-alt" onclick="window.location.href='packages.html'">Learn More About Us</button>
+                </div>
+                <div class="why-visual">
+                    <div class="hexagon-grid">
+                        <div class="hexagon hex-1"></div>
+                        <div class="hexagon hex-2"></div>
+                        <div class="hexagon hex-3"></div>
+                        <div class="hexagon hex-4"></div>
+                        <div class="hexagon hex-5"></div>
+                        <div class="hexagon hex-6"></div>
+                        <div class="hexagon hex-7"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">TESTIMONIALS</span>
+                <h2 class="section-title">What Our Clients Say</h2>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">"Prodizy Tech transformed our digital presence completely. Their team is professional, creative, and delivers on time every single time."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <div class="author-name">John Doe</div>
+                                <div class="author-title">CEO, Tech Innovations</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">"Working with Prodizy Tech has been an absolute pleasure. They understood our vision and brought it to life beyond our expectations."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SM</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Miller</div>
+                                <div class="author-title">Founder, Digital Solutions</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">"The level of expertise and dedication from Prodizy Tech is unmatched. They're not just developers, they're true partners in our success."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MJ</div>
+                            <div class="author-info">
+                                <div class="author-name">Michael Johnson</div>
+                                <div class="author-title">CTO, Global Enterprises</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="final-cta">
+        <div class="cta-glow-effect"></div>
+        <div class="container">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Let's work together to bring your vision to life</p>
+            <button class="mega-cta" onclick="window.location.href='contact.html'">
+                <span>GET IN TOUCH</span>
+                <div class="button-glow"></div>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="index.js"></script>
+    <script src="navbar.js"></script>
+</body>
+</html>
