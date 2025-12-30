@@ -1563,3 +1563,11 @@ input:checked + .toggle-slider:before {
                 grid-template-columns: 1fr;
             }
         }
+        .team-preview-avatar img {
+    width: 80px;       /* adjust size */
+    height: 80px;      /* keep square */
+    border-radius: 50%; /* makes it circular */
+    object-fit: cover;  /* ensures image fills the circle nicely */
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
