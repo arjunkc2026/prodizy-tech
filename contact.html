@@ -213,42 +213,106 @@
     <div id="footer-placeholder"></div>
 
     <script src="index.js"></script>
-<script>
-document.getElementById("contactForm").addEventListener("submit", async function (e) {
+    <script>
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-
-  const data = {
-    firstName: this.firstName.value,
-    lastName: this.lastName.value,
-    email: this.email.value,
-    phone: this.phone.value,
-    company: this.company.value,
-    service: this.service.value,
-    budget: this.budget.value,
-    message: this.message.value,
-    newsletter: this.newsletter.checked
+  
+  const submitBtn = e.target.querySelector('.form-submit-btn');
+  const originalBtnText = submitBtn.textContent;
+  
+  // Get form data
+  const formData = {
+    firstName: e.target.firstName.value.trim(),
+    lastName: e.target.lastName.value.trim(),
+    email: e.target.email.value.trim(),
+    phone: e.target.phone.value.trim(),
+    company: e.target.company.value.trim(),
+    service: e.target.service.value,
+    budget: e.target.budget.value,
+    message: e.target.message.value.trim(),
+    newsletter: e.target.newsletter.checked
   };
 
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+  submitBtn.style.opacity = '0.7';
+
   try {
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
     });
 
     const result = await response.json();
 
-    alert(result.message);
-
     if (response.ok) {
-      this.reset();
+      // Success animation
+      submitBtn.textContent = '✓ Message Sent!';
+      submitBtn.style.background = '#10b981';
+      showNotification('Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
+      
+      setTimeout(() => {
+        e.target.reset();
+        submitBtn.textContent = originalBtnText;
+        submitBtn.style.background = '';
+        submitBtn.style.opacity = '';
+        submitBtn.disabled = false;
+      }, 2000);
+    } else {
+      throw new Error(result.message || 'Failed to send message');
     }
   } catch (error) {
-    alert("Something went wrong. Please try again later.");
+    console.error('Error:', error);
+    showNotification('Oops! Something went wrong. Please try again or email us at prodizytech@gmail.com', 'error');
+    submitBtn.textContent = originalBtnText;
+    submitBtn.style.opacity = '';
+    submitBtn.disabled = false;
   }
 });
+
+// Toast notification function
+function showNotification(message, type = 'info') {
+  const existing = document.querySelector('.form-notification');
+  if (existing) existing.remove();
+  
+  const notification = document.createElement('div');
+  notification.className = `form-notification ${type}`;
+  notification.textContent = message;
+  
+  Object.assign(notification.style, {
+    position: 'fixed',
+    top: '20px',
+    right: '20px',
+    padding: '16px 24px',
+    borderRadius: '8px',
+    color: 'white',
+    fontSize: '14px',
+    fontWeight: '500',
+    maxWidth: '400px',
+    zIndex: '9999',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    animation: 'slideIn 0.3s ease',
+    background: type === 'success' ? '#10b981' : '#ef4444'
+  });
+  
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideIn {
+      from { transform: translateX(400px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.animation = 'slideIn 0.3s ease reverse';
+    setTimeout(() => notification.remove(), 300);
+  }, 5000);
+}
 </script>
     <script src="navbar.js"></script>
 </body>
