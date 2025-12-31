@@ -21,6 +21,9 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Temporary sender for testing (must be verified in Resend)
+    const senderEmail = process.env.RESEND_TEST_EMAIL || "prodizytech@gmail.com";
+
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -28,8 +31,8 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        from: "Website Contact <prodizytech@gmail.com>",  // Update to your professional email once ready
-        to: ["prodizytech@gmail.com"],                  // Send emails to your official inbox
+        from: `Website Contact <${senderEmail}>`,
+        to: [senderEmail], // Receive test emails here
         subject: "New Client Inquiry from Website",
         html: `
           <h2>New Contact Form Submission</h2>
@@ -49,13 +52,14 @@ export default async function handler(req, res) {
 
     if (!emailResponse.ok) {
       const errorText = await emailResponse.text();
-      console.error("Resend error:", errorText);
-      return res.status(500).json({ message: "Failed to send message" });
+      console.error("Resend API error:", errorText);
+      return res.status(500).json({ message: "Failed to send message", error: errorText });
     }
 
     return res.status(200).json({ message: "Message sent successfully!" });
+
   } catch (err) {
     console.error("Handler error:", err);
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error", error: err.message });
   }
 }
