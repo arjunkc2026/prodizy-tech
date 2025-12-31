@@ -1302,3 +1302,76 @@ body {
   position: relative;
   z-index: 10;
 }
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.preloader-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    animation: logoSpin 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(192, 192, 192, 0.5));
+    margin-bottom: 30px;
+}
+
+@keyframes logoSpin {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(360deg);  /* Full spin */
+    }
+    100% {
+        transform: scale(1) rotate(720deg);  /* Two full spins */
+    }
+}
+
+.loading-bar {
+    width: 200px;
+    height: 3px;
+    background: rgba(192, 192, 192, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #c0c0c0, #ffffff);
+    border-radius: 10px;
+    animation: loadingProgress 2s ease-in-out infinite;
+}
+
+@keyframes loadingProgress {
+    0% {
+        width: 0%;
+    }
+    50% {
+        width: 70%;
+    }
+    100% {
+        width: 100%;
+    }
+}

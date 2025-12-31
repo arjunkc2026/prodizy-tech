@@ -327,3 +327,34 @@ trailAnimation.textContent = `
     }
 `;
 document.head.appendChild(trailAnimation);
+
+// Preloader - Shows only ONCE per session
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    
+    if (preloader) {
+        // Check if user has already seen preloader in this session
+        const hasSeenPreloader = sessionStorage.getItem('preloaderShown');
+        
+        if (hasSeenPreloader) {
+            // Already seen - hide immediately
+            preloader.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        } else {
+            // First time - show preloader
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 500);
+                
+                // Mark as shown for this session
+                sessionStorage.setItem('preloaderShown', 'true');
+            }, 2000); // 2 seconds
+        }
+    }
+});
+
