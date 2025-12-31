@@ -180,10 +180,6 @@ export default async function handler(req, res) {
                     <p style="white-space: pre-wrap; margin: 0;">${message}</p>
                   </div>
                 </div>
-
-                <div class="footer">
-                  <p>Reply directly to this email to respond to ${firstName}</p>
-                </div>
               </div>
             </body>
           </html>
