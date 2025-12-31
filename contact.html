@@ -272,42 +272,59 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
   }
 });
 
-// Toast notification function
+// Replace your showNotification function with this:
+
 function showNotification(message, type = 'info') {
+  // Remove existing notification if any
   const existing = document.querySelector('.form-notification');
   if (existing) existing.remove();
   
+  // Create notification element
   const notification = document.createElement('div');
   notification.className = `form-notification ${type}`;
   notification.textContent = message;
   
+  // Style with black background and silver metallic text
   Object.assign(notification.style, {
     position: 'fixed',
     top: '20px',
     right: '20px',
     padding: '16px 24px',
     borderRadius: '8px',
-    color: 'white',
+    color: '#d4d4d4',  // Silver metallic
     fontSize: '14px',
-    fontWeight: '500',
+    fontWeight: '600',
     maxWidth: '400px',
     zIndex: '9999',
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
     animation: 'slideIn 0.3s ease',
-    background: type === 'success' ? '#10b981' : '#ef4444'
+    background: type === 'success' 
+      ? 'linear-gradient(135deg, #1a1a1a 0%, #000000 100%)'  // Black gradient for success
+      : 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',  // Red gradient for errors
+    border: '1px solid #404040',
+    textShadow: '0 0 10px rgba(212, 212, 212, 0.5), 0 1px 2px rgba(255,255,255,0.3)'  // Metallic glow
   });
   
+  // Add animation
   const style = document.createElement('style');
   style.textContent = `
     @keyframes slideIn {
-      from { transform: translateX(400px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from { 
+        transform: translateX(400px); 
+        opacity: 0; 
+      }
+      to { 
+        transform: translateX(0); 
+        opacity: 1; 
+      }
     }
   `;
   document.head.appendChild(style);
   
+  // Add to page
   document.body.appendChild(notification);
   
+  // Auto remove after 5 seconds
   setTimeout(() => {
     notification.style.animation = 'slideIn 0.3s ease reverse';
     setTimeout(() => notification.remove(), 300);
