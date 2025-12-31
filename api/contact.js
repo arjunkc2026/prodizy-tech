@@ -182,7 +182,7 @@ export default async function handler(req, res) {
                 </div>
 
                 <div class="footer">
-                  <p>You can reply directly to this email to respond to ${firstName}</p>
+                  <p>Reply directly to this email to respond to ${firstName}</p>
                 </div>
               </div>
             </body>
