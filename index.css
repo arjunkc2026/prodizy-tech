@@ -146,7 +146,7 @@ body {
 
 /* Hero Section - Creative Design */
 .hero {
-    padding-top: 150px;
+    padding-top: 169px;
     position: relative;
     height: 100vh;
     display: flex;
@@ -362,9 +362,10 @@ body {
 
 /* Hero Title with Glitch */
 .hero-title {
-    font-size: 72px;
+    font-size: 100px;
     font-weight: 300;
     letter-spacing: 15px;
+    margin-top: 30px;
     margin-bottom: 30px;
     background: linear-gradient(135deg, #ffffff, #808080, #ffffff);
     background-size: 200% auto;
