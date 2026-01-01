@@ -448,8 +448,6 @@ window.addEventListener('DOMContentLoaded', function() {
             const messageField = document.getElementById('message');
             const currentMessage = messageField.value || '';
             
-            console.log('DEBUG - Current message:', currentMessage);
-            
             // Remove ALL occurrences of "I'm interested in..." patterns
             // Use two passes: first for package prices (with parentheses), then for simple services
             let customText = currentMessage
@@ -457,9 +455,6 @@ window.addEventListener('DOMContentLoaded', function() {
                 .replace(/I'm interested in [^.]+\. ?/g, '')  // Remove patterns without package
                 .replace(/\s+/g, ' ')  // Clean up multiple spaces
                 .trim();
-            
-            console.log('DEBUG - Custom text after cleanup:', customText);
-            console.log('DEBUG - Generated text:', generatedText);
             
             // Rebuild: custom text first, then new generated text
             if (customText) {
