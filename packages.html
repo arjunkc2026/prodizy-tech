@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="View Prodizy Tech packages and pricing for web development, digital marketing, SEO, and custom tech solutions.">
-    <title>Packages & Pricing | Affordable Digital Solutions – Prodizy Tech</title>
-    <meta property="og:title" content="Packages & Pricing – Prodizy Tech">
+    <title>Packages & Pricing | Affordable Digital Solutions — Prodizy Tech</title>
+    <meta property="og:title" content="Packages & Pricing — Prodizy Tech">
     <meta property="og:description" content="Transparent pricing packages for web development, digital marketing, SEO, and tech solutions.">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://prodizytech.com/packages">
@@ -68,7 +68,7 @@
                         <li>✓ Google Analytics Setup</li>
                         <li>✓ 1 Round of Revisions</li>
                     </ul>
-                    <button class="package-btn">Choose Plan</button>
+                    <button class="package-btn" onclick="window.location.href='contact.html?package=starter&price=49999'">Choose Plan</button>
                 </div>
 
                 <!-- Professional Package -->
@@ -92,7 +92,7 @@
                         <li>✓ Performance Optimization</li>
                         <li>✓ 3 Rounds of Revisions</li>
                     </ul>
-                    <button class="package-btn">Choose Plan</button>
+                    <button class="package-btn" onclick="window.location.href='contact.html?package=professional&price=129999'">Choose Plan</button>
                 </div>
 
                 <!-- Enterprise Package -->
@@ -118,7 +118,7 @@
                         <li>✓ Unlimited Revisions</li>
                         <li>✓ Dedicated Account Manager</li>
                     </ul>
-                    <button class="package-btn">Choose Plan</button>
+                    <button class="package-btn" onclick="window.location.href='contact.html?package=enterprise&price=249999'">Choose Plan</button>
                 </div>
             </div>
 
@@ -128,7 +128,7 @@
                     <div class="custom-icon">⚙️</div>
                     <h3>Custom Package</h3>
                     <p>Need something unique? We'll create a tailored solution that perfectly fits your business requirements and budget.</p>
-                    <button class="custom-btn" onclick="window.location.href='contact.html'">Request Custom Quote</button>
+                    <button class="custom-btn" onclick="window.location.href='contact.html?package=custom'">Request Custom Quote</button>
                 </div>
             </div>
 
@@ -143,7 +143,7 @@
                         <p>iOS and Android native or cross-platform application</p>
                     </div>
                     <div class="addon-card">
-                        <div class="addon-icon">🔍</div>
+                        <div class="addon-icon">📈</div>
                         <h4>Digital Marketing</h4>
                         <p class="addon-price">Rs.24,999/month</p>
                         <p>Comprehensive SEO strategy and marketing</p>
@@ -264,15 +264,17 @@
         const monthlyPrices = document.querySelectorAll('.monthly-price');
         const annualPrices = document.querySelectorAll('.annual-price');
 
-        pricingToggle.addEventListener('change', function() {
-            if (this.checked) {
-                monthlyPrices.forEach(price => price.style.display = 'none');
-                annualPrices.forEach(price => price.style.display = 'inline');
-            } else {
-                monthlyPrices.forEach(price => price.style.display = 'inline');
-                annualPrices.forEach(price => price.style.display = 'none');
-            }
-        });
+        if (pricingToggle) {
+            pricingToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    monthlyPrices.forEach(price => price.style.display = 'none');
+                    annualPrices.forEach(price => price.style.display = 'inline');
+                } else {
+                    monthlyPrices.forEach(price => price.style.display = 'inline');
+                    annualPrices.forEach(price => price.style.display = 'none');
+                }
+            });
+        }
     </script>
 </body>
 </html>

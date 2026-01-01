@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <label for="company">Company Name</label>
                             <input type="text" id="company" name="company">
-                        </div>
+                            </div>
 
                         <div class="form-group">
                             <label for="service">Service Interested In *</label>
@@ -72,12 +72,13 @@
                                 <option value="">Select a service</option>
                                 <option value="web-development">Web Development</option>
                                 <option value="mobile-app">Mobile App Development</option>
-                                <option value="cloud-solutions">Cloud Solutions</option>
+                                <option value="seo">SEO Optimization</option>
                                 <option value="ui-ux-design">UI/UX Design</option>
                                 <option value="ai-ml">AI & Machine Learning</option>
                                 <option value="cybersecurity">Cybersecurity</option>
                                 <option value="digital-marketing">Digital Marketing</option>
                                 <option value="it-consulting">IT Consulting</option>
+                                <option value="maintenance-support">Maintenance & Support</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
@@ -214,6 +215,165 @@
 
     <script src="index.js"></script>
     <script>
+// Auto-fill form based on URL parameters AND sessionStorage (persists until tab close/refresh)
+window.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlService = urlParams.get('service');
+    const urlPackage = urlParams.get('package');
+    const urlPrice = urlParams.get('price');
+    
+    // Get stored values from sessionStorage
+    let storedService = sessionStorage.getItem('selectedService');
+    let storedPackage = sessionStorage.getItem('selectedPackage');
+    let storedBudget = sessionStorage.getItem('selectedBudget');
+    let storedMessage = sessionStorage.getItem('selectedMessage');
+    
+    // If URL has new parameters, save them and merge with existing
+    if (urlService) {
+        storedService = urlService;
+        sessionStorage.setItem('selectedService', urlService);
+    }
+    
+    if (urlPackage) {
+        storedPackage = urlPackage;
+        sessionStorage.setItem('selectedPackage', urlPackage);
+        
+        // Map package to budget
+        const packageToBudget = {
+            'starter': 'under-50k',
+            'professional': '100k-250k',
+            'enterprise': '250k-500k',
+            'custom': ''
+        };
+        storedBudget = packageToBudget[urlPackage];
+        sessionStorage.setItem('selectedBudget', storedBudget);
+    }
+    
+    // Build combined message based on what's selected
+    const serviceNames = {
+        'web-development': 'Web Development',
+        'mobile-app': 'Mobile App Development',
+        'seo': 'SEO Optimization',
+        'ui-ux-design': 'UI/UX Design',
+        'ai-ml': 'AI & Machine Learning',
+        'cybersecurity': 'Cybersecurity',
+        'digital-marketing': 'Digital Marketing',
+        'it-consulting': 'IT Consulting',
+        'maintenance-support': 'Maintenance & Support'
+    };
+    
+    const packageNames = {
+        'starter': 'Starter Package (Rs. 49,999)',
+        'professional': 'Professional Package (Rs. 1,29,999)',
+        'enterprise': 'Enterprise Package (Rs. 2,49,999)',
+        'custom': 'Custom Package'
+    };
+    
+    // Generate message based on selections
+    if (storedService || storedPackage) {
+        let messageParts = [];
+        
+        if (storedService && serviceNames[storedService]) {
+            messageParts.push(serviceNames[storedService]);
+        }
+        
+        if (storedPackage && packageNames[storedPackage]) {
+            messageParts.push(`the ${packageNames[storedPackage]}`);
+        }
+        
+        if (messageParts.length > 0) {
+            storedMessage = `I'm interested in ${messageParts.join(' and ')}. `;
+            sessionStorage.setItem('selectedMessage', storedMessage);
+        }
+    }
+    
+    // Pre-select service if we have one stored
+    if (storedService) {
+        const serviceSelect = document.getElementById('service');
+        const serviceOption = serviceSelect.querySelector(`option[value="${storedService}"]`);
+        if (serviceOption) {
+            serviceSelect.value = storedService;
+            // Add visual highlight only if it's NEW from URL
+            if (urlService) {
+                serviceSelect.style.borderColor = '#4f46e5';
+                serviceSelect.style.boxShadow = '0 0 0 3px rgba(79, 70, 229, 0.1)';
+                setTimeout(() => {
+                    serviceSelect.style.borderColor = '';
+                    serviceSelect.style.boxShadow = '';
+                }, 2000);
+            }
+        }
+    }
+    
+    // Pre-select budget if we have one stored
+    if (storedBudget) {
+        const budgetSelect = document.getElementById('budget');
+        budgetSelect.value = storedBudget;
+        // Add visual highlight only if it's NEW from URL
+        if (urlPackage) {
+            budgetSelect.style.borderColor = '#4f46e5';
+            budgetSelect.style.boxShadow = '0 0 0 3px rgba(79, 70, 229, 0.1)';
+            setTimeout(() => {
+                budgetSelect.style.borderColor = '';
+                budgetSelect.style.boxShadow = '';
+            }, 2000);
+        }
+    }
+    
+    // Pre-fill message if we have one stored
+    if (storedMessage) {
+        const messageField = document.getElementById('message');
+        messageField.value = storedMessage;
+        if (urlPackage) {
+            messageField.focus();
+            messageField.setSelectionRange(messageField.value.length, messageField.value.length);
+        }
+    }
+    
+    // Show notification if NEW parameters were detected
+    if (urlService || urlPackage) {
+        const notification = document.createElement('div');
+        
+        let notificationText = '';
+        if (urlService && urlPackage) {
+            notificationText = '✓ Service and Package pre-selected!';
+        } else if (urlPackage) {
+            notificationText = storedService 
+                ? '✓ Package added to your selected service!'
+                : '✓ Package pre-selected!';
+        } else if (urlService) {
+            notificationText = storedPackage 
+                ? '✓ Service added to your selected package!'
+                : '✓ Service pre-selected!';
+        }
+        
+        notification.textContent = notificationText;
+        
+        Object.assign(notification.style, {
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            padding: '12px 20px',
+            background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+            color: 'white',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: '500',
+            zIndex: '9999',
+            boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
+            animation: 'slideIn 0.3s ease'
+        });
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideIn 0.3s ease reverse';
+            setTimeout(() => notification.remove(), 300);
+        }, 4000);
+    }
+});
+
+// Form submission handler
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   
@@ -253,6 +413,12 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
       submitBtn.style.background = '#10b981';
       showNotification('Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
       
+      // Clear sessionStorage on successful submission
+      sessionStorage.removeItem('selectedService');
+      sessionStorage.removeItem('selectedPackage');
+      sessionStorage.removeItem('selectedBudget');
+      sessionStorage.removeItem('selectedMessage');
+      
       setTimeout(() => {
         e.target.reset();
         submitBtn.textContent = originalBtnText;
@@ -272,8 +438,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
   }
 });
 
-// Replace your showNotification function with this:
-
+// Notification function
 function showNotification(message, type = 'info') {
   // Remove existing notification if any
   const existing = document.querySelector('.form-notification');
