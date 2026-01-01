@@ -120,8 +120,8 @@
                         <div class="info-item">
                             <div class="info-icon">📧</div>
                             <h4>Email</h4>
-                            <p><a href="mailto:info@prodizytech.com">info@prodizytech.com</a></p>
-                            <p><a href="mailto:prodizytech@gmail.com">prodizytech@gmail.com</a></p>
+                            <p><a href="/cdn-cgi/l/email-protection#92fbfcf4fdd2e2e0fdf6fbe8ebe6f7f1fabcf1fdff"><span class="__cf_email__" data-cfemail="91f8fff7fed1e1e3fef5f8ebe8e5f4f2f9bff2fefc">[email&#160;protected]</span></a></p>
+                            <p><a href="/cdn-cgi/l/email-protection#0272706d666b787b7667616a42656f636b6e2c616d6f"><span class="__cf_email__" data-cfemail="c2b2b0ada6abb8bbb6a7a1aa82a5afa3abaeeca1adaf">[email&#160;protected]</span></a></p>
                         </div>
 
                         <div class="info-item">
@@ -213,7 +213,7 @@
     <!-- Footer -->
     <div id="footer-placeholder"></div>
 
-    <script src="index.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="index.js"></script>
     <script>
 // Auto-fill form based on URL parameters AND sessionStorage (persists until tab close/refresh)
 window.addEventListener('DOMContentLoaded', function() {
@@ -269,8 +269,8 @@ window.addEventListener('DOMContentLoaded', function() {
         'custom': 'Custom Package'
     };
     
-    // Generate message based on selections
-    if (storedService || storedPackage) {
+    // Generate message based on selections (append to existing saved message)
+    if (urlService || urlPackage) {
         let messageParts = [];
         
         if (storedService && serviceNames[storedService]) {
@@ -282,8 +282,22 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         
         if (messageParts.length > 0) {
-            storedMessage = `I'm interested in ${messageParts.join(' and ')}. `;
-            sessionStorage.setItem('selectedMessage', storedMessage);
+            const generatedText = `I'm interested in ${messageParts.join(' and ')}.`;
+            
+            // Get existing saved message from sessionStorage (user's custom text)
+            const existingMessage = storedMessage || '';
+            
+            // Only append if the generated text is not already in the message
+            if (!existingMessage.includes(generatedText)) {
+                if (existingMessage.trim()) {
+                    // User has custom text - append our message to it
+                    storedMessage = existingMessage.trim() + ' ' + generatedText;
+                } else {
+                    // Message is empty - just use our generated text
+                    storedMessage = generatedText;
+                }
+                sessionStorage.setItem('selectedMessage', storedMessage);
+            }
         }
     }
     
@@ -324,11 +338,52 @@ window.addEventListener('DOMContentLoaded', function() {
     if (storedMessage) {
         const messageField = document.getElementById('message');
         messageField.value = storedMessage;
-        if (urlPackage) {
+        if (urlPackage || urlService) {
             messageField.focus();
             messageField.setSelectionRange(messageField.value.length, messageField.value.length);
         }
     }
+    
+    // Restore personal details from sessionStorage
+    const savedFirstName = sessionStorage.getItem('formFirstName');
+    const savedLastName = sessionStorage.getItem('formLastName');
+    const savedEmail = sessionStorage.getItem('formEmail');
+    const savedPhone = sessionStorage.getItem('formPhone');
+    const savedCompany = sessionStorage.getItem('formCompany');
+    
+    if (savedFirstName) document.getElementById('firstName').value = savedFirstName;
+    if (savedLastName) document.getElementById('lastName').value = savedLastName;
+    if (savedEmail) document.getElementById('email').value = savedEmail;
+    if (savedPhone) document.getElementById('phone').value = savedPhone;
+    if (savedCompany) document.getElementById('company').value = savedCompany;
+    
+    // Auto-save personal details as user types
+    const autoSaveFields = [
+        { id: 'firstName', key: 'formFirstName' },
+        { id: 'lastName', key: 'formLastName' },
+        { id: 'email', key: 'formEmail' },
+        { id: 'phone', key: 'formPhone' },
+        { id: 'company', key: 'formCompany' }
+    ];
+    
+    autoSaveFields.forEach(field => {
+        const element = document.getElementById(field.id);
+        element.addEventListener('input', function() {
+            if (this.value.trim()) {
+                sessionStorage.setItem(field.key, this.value.trim());
+            } else {
+                sessionStorage.removeItem(field.key);
+            }
+        });
+    });
+    
+    // Also save message field as user types (so custom text isn't lost)
+    const messageField = document.getElementById('message');
+    messageField.addEventListener('input', function() {
+        if (this.value.trim()) {
+            sessionStorage.setItem('selectedMessage', this.value.trim());
+        }
+    });
     
     // Show notification if NEW parameters were detected
     if (urlService || urlPackage) {
@@ -413,11 +468,16 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
       submitBtn.style.background = '#10b981';
       showNotification('Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
       
-      // Clear sessionStorage on successful submission
+      // Clear ALL sessionStorage on successful submission
       sessionStorage.removeItem('selectedService');
       sessionStorage.removeItem('selectedPackage');
       sessionStorage.removeItem('selectedBudget');
       sessionStorage.removeItem('selectedMessage');
+      sessionStorage.removeItem('formFirstName');
+      sessionStorage.removeItem('formLastName');
+      sessionStorage.removeItem('formEmail');
+      sessionStorage.removeItem('formPhone');
+      sessionStorage.removeItem('formCompany');
       
       setTimeout(() => {
         e.target.reset();
