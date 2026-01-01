@@ -385,6 +385,97 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Add listeners to service and budget dropdowns to auto-generate message when changed
+    const serviceSelect = document.getElementById('service');
+    const budgetSelect = document.getElementById('budget');
+    
+    serviceSelect.addEventListener('change', function() {
+        if (this.value) {
+            sessionStorage.setItem('selectedService', this.value);
+            updateMessageFromSelections();
+        }
+    });
+    
+    budgetSelect.addEventListener('change', function() {
+        if (this.value) {
+            sessionStorage.setItem('selectedBudget', this.value);
+            // Try to infer package from budget
+            const budgetToPackage = {
+                'under-50k': 'starter',
+                '100k-250k': 'professional',
+                '250k-500k': 'enterprise'
+            };
+            if (budgetToPackage[this.value]) {
+                sessionStorage.setItem('selectedPackage', budgetToPackage[this.value]);
+                updateMessageFromSelections();
+            }
+        }
+    });
+    
+    // Function to update message based on current selections
+    function updateMessageFromSelections() {
+        const currentService = sessionStorage.getItem('selectedService');
+        const currentPackage = sessionStorage.getItem('selectedPackage');
+        
+        const serviceNames = {
+            'web-development': 'Web Development',
+            'mobile-app': 'Mobile App Development',
+            'seo': 'SEO Optimization',
+            'ui-ux-design': 'UI/UX Design',
+            'ai-ml': 'AI & Machine Learning',
+            'cybersecurity': 'Cybersecurity',
+            'digital-marketing': 'Digital Marketing',
+            'it-consulting': 'IT Consulting',
+            'maintenance-support': 'Maintenance & Support'
+        };
+        
+        const packageNames = {
+            'starter': 'Starter Package (Rs. 49,999)',
+            'professional': 'Professional Package (Rs. 1,29,999)',
+            'enterprise': 'Enterprise Package (Rs. 2,49,999)',
+            'custom': 'Custom Package'
+        };
+        
+        let messageParts = [];
+        
+        if (currentService && serviceNames[currentService]) {
+            messageParts.push(serviceNames[currentService]);
+        }
+        
+        if (currentPackage && packageNames[currentPackage]) {
+            messageParts.push(`the ${packageNames[currentPackage]}`);
+        }
+        
+        if (messageParts.length > 0) {
+            const generatedText = `I'm interested in ${messageParts.join(' and ')}.`;
+            
+            // Get current message
+            const messageField = document.getElementById('message');
+            const currentMessage = messageField.value || sessionStorage.getItem('selectedMessage') || '';
+            
+            // Remove any previous "I'm interested in..." text to avoid duplicates
+            let cleanMessage = currentMessage.replace(/I'm interested in .+?\./g, '').trim();
+            
+            // Append new selection
+            if (cleanMessage) {
+                messageField.value = cleanMessage + ' ' + generatedText;
+            } else {
+                messageField.value = generatedText;
+            }
+            
+            // Save to sessionStorage
+            sessionStorage.setItem('selectedMessage', messageField.value);
+            
+            // Visual feedback
+            messageField.style.borderColor = '#10b981';
+            messageField.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
+            setTimeout(() => {
+                messageField.style.borderColor = '';
+                messageField.style.boxShadow = '';
+            }, 1000);
+        }
+    }
+    
     // Show notification if NEW parameters were detected
     if (urlService || urlPackage) {
         const notification = document.createElement('div');
