@@ -3,659 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get in touch with Prodizy Tech to discuss web development, digital marketing, SEO, or custom tech solutions for your business.">
-    <meta property="og:title" content="Contact Prodizy Tech">
-    <meta property="og:description" content="Reach out to discuss your next website, marketing campaign, or tech project.">
+    <meta name="description" content="Prodizy Tech helps businesses grow with digital marketing, web development, SEO, and modern tech solutions built for real results.">
+    <meta property="og:title" content="Prodizy Tech – Digital Marketing & Web Solutions">
+    <meta property="og:description" content="We build websites, run digital marketing, and deliver tech solutions that help businesses scale.">
     <meta property="og:type" content="website">
-    <title>Contact Us | Start Your Project with Prodizy Tech</title>
-    <link rel="canonical" href="https://prodizytech.com/contact">
+    <meta property="og:url" content="https://prodizytech.com/">
+    <title>Prodizy Tech | Digital Marketing, Web Development & Tech Solutions</title>
+    <link rel="canonical" href="https://prodizytech.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Prodizy Tech – Digital Marketing & Web Solutions">
+    <meta name="twitter:description" content="We build websites, run digital marketing, and deliver tech solutions that help businesses scale.">
+    <meta name="twitter:image" content="https://prodizytech.com/logo.png">
+    <meta property="og:image" content="https://prodizytech.com/logo.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
     <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="pages.css">
     <link rel="stylesheet" href="navbar.css">
-     <link rel="stylesheet" href="toggle.css">
+    <link rel="stylesheet" href="toggle.css">
     <script src="components.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+    
+   <div id="preloader">
+        <div class="preloader-content">
+            <img src="logo.png" alt="Prodizy Tech" class="preloader-logo">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+    
     <div id="navbar-placeholder"></div>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="particles" id="particles"></div>
-        <div class="container">
-            <h1 class="page-title">Contact Us</h1>
-            <p class="page-subtitle">LET'S START YOUR PROJECT TOGETHER</p>
+
+    <!-- Hero Section with Creative Design -->
+    <section class="hero">
+        <!-- Animated Background -->
+        <div class="hero-background">
+            <div class="grid-overlay"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <canvas id="particleCanvas"></canvas>
+        
+        <div class="hero-content">
+            <!-- Floating Logo with Glow Effect -->
+            <div class="logo-showcase">
+                <div class="logo-glow-ring"></div>
+                <div class="logo-container">
+                    <!-- REPLACE logo.png WITH YOUR LOGO IMAGE -->
+                    <img src="logo.png" alt="Prodizy Tech" class="hero-logo">
+                </div>
+                <div class="logo-particles">
+                    <span class="logo-spark"></span>
+                    <span class="logo-spark"></span>
+                    <span class="logo-spark"></span>
+                    <span class="logo-spark"></span>
+                </div>
+            </div>
+            
+            <!-- Title with Glitch Effect -->
+            <h1 class="hero-title" data-text="PRODIZY TECH">
+                PRODIZY TECH
+            </h1>
+            
+            <!-- Animated Subtitle -->
+            <div class="hero-subtitle-wrapper">
+                <p class="hero-subtitle typing-text">WEB • APP • DIGITAL MARKETING</p>
+                <div class="subtitle-underline"></div>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="hero-cta-group">
+                <button onclick="window.location.href='services.html'" class="hero-cta primary">
+                    <span>VIEW SERVICES</span>
+                    <div class="cta-shine"></div>
+                </button>
+                <button onclick="window.location.href='packages.html'" class="hero-cta secondary">
+                    <span>VIEW PACKAGES</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Floating Tech Elements -->
+        <div class="floating-elements">
+            <div class="tech-icon icon-1">{ }</div>
+            <div class="tech-icon icon-2">&lt;/&gt;</div>
+            <div class="tech-icon icon-3">AI</div>
+            <div class="tech-icon icon-4">∞</div>
+            <div class="tech-icon icon-5">◇</div>
+            <div class="tech-icon icon-6">⚡</div>
         </div>
     </section>
 
-    <!-- Contact Content -->
-    <section class="page-content">
+    <!-- Stats Bar with Metallic Design -->
+    <section class="stats-bar">
         <div class="container">
-            <div class="contact-layout">
-                <!-- Contact Form -->
-                <div class="contact-form-section">
-                    <h2>Send Us a Message</h2>
-                    <p class="form-intro">Fill out the form below and we'll get back to you within 24 hours.</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" data-count="500">0</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="200">0</div>
+                    <div class="stat-label">Clients</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="50">0</div>
+                    <div class="stat-label">Team</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="10">0</div>
+                    <div class="stat-label">Years</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section with 3D Cards -->
+    <section class="what-we-do">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">WHAT WE DO</span>
+                <h2 class="section-title">Transforming Ideas Into Reality</h2>
+                <p class="section-description">We create cutting-edge digital solutions that empower businesses to thrive in the modern world</p>
+            </div>
+
+            <div class="services-showcase">
+                <!-- Service Card 1 -->
+                <div class="service-showcase-card">
+                    <div class="card-glow"></div>
+                    <div class="card-number">01</div>
+                    <div class="card-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <rect x="10" y="10" width="40" height="40" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 20 L40 40 M40 20 L20 40" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with cutting-edge technologies</p>
+                    <a href="services.html" class="card-link">Explore More →</a>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-showcase-card">
+                    <div class="card-glow"></div>
+                    <div class="card-number">02</div>
+                    <div class="card-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="20" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="30" cy="30" r="5" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>Mobile Apps</h3>
+                    <p>Native and cross-platform mobile solutions for iOS and Android</p>
+                    <a href="services.html" class="card-link">Explore More →</a>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-showcase-card">
+                    <div class="card-glow"></div>
+                    <div class="card-number">03</div>
+                    <div class="card-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <path d="M15 25 L30 15 L45 25 L45 45 L15 45 Z" stroke="currentColor" stroke-width="2"/>
+                            <rect x="25" y="30" width="10" height="15" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and migration services for enterprises</p>
+                    <a href="services.html" class="card-link">Explore More →</a>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-showcase-card">
+                    <div class="card-glow"></div>
+                    <div class="card-number">04</div>
+                    <div class="card-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <path d="M10 30 Q30 10 50 30 Q30 50 10 30" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>AI & Innovation</h3>
+                    <p>Intelligent solutions powered by artificial intelligence and machine learning</p>
+                    <a href="services.html" class="card-link">Explore More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us with Parallax -->
+    <section class="why-choose">
+        <div class="parallax-bg"></div>
+        <div class="container">
+            <div class="why-content">
+                <div class="why-text">
+                    <span class="section-tag">WHY CHOOSE US</span>
+                    <h2>We Don't Just Build<br>We Innovate</h2>
+                    <p>At Prodizy Tech, we combine creative thinking with technical expertise to deliver solutions that exceed expectations. Our team of dedicated professionals is committed to your success.</p>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <span>10+ Years of Excellence</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <span>Award-Winning Team</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <span>24/7 Support</span>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <span>100% Client Satisfaction</span>
+                        </li>
+                    </ul>
+                    <button class="cta-btn-alt" onclick="window.location.href='packages.html'">Learn More About Us</button>
+                </div>
+                <div class="why-visual">
+                    <div class="hexagon-grid">
+                        <div class="hexagon hex-1"></div>
+                        <div class="hexagon hex-2"></div>
+                        <div class="hexagon hex-3"></div>
+                        <div class="hexagon hex-4"></div>
+                        <div class="hexagon hex-5"></div>
+                        <div class="hexagon hex-6"></div>
+                        <div class="hexagon hex-7"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">TESTIMONIALS</span>
+                <h2 class="section-title">What Our Clients Say</h2>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-card">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">"Prodizy Tech transformed our digital presence completely. Their team is professional, creative, and delivers on time every single time."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <div class="author-name">John Doe</div>
+                                <div class="author-title">CEO, Tech Innovations</div>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <form class="contact-form" id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName">First Name *</label>
-                                <input type="text" id="firstName" name="firstName" required>
+                    <div class="testimonial-card">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">"Working with Prodizy Tech has been an absolute pleasure. They understood our vision and brought it to life beyond our expectations."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SM</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Miller</div>
+                                <div class="author-title">Founder, Digital Solutions</div>
                             </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name *</label>
-                                <input type="text" id="lastName" name="lastName" required>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="company">Company Name</label>
-                            <input type="text" id="company" name="company">
-                            </div>
-
-                        <div class="form-group">
-                            <label for="service">Service Interested In *</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="web-development">Web Development</option>
-                                <option value="mobile-app">Mobile App Development</option>
-                                <option value="seo">SEO Optimization</option>
-                                <option value="ui-ux-design">UI/UX Design</option>
-                                <option value="ai-ml">AI & Machine Learning</option>
-                                <option value="cybersecurity">Cybersecurity</option>
-                                <option value="digital-marketing">Digital Marketing</option>
-                                <option value="it-consulting">IT Consulting</option>
-                                <option value="maintenance-support">Maintenance & Support</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="budget">Budget Range</label>
-                            <select id="budget" name="budget">
-                                <option value="">Select budget range</option>
-                                <option value="under-50k">Under Rs.50,000</option>
-                                <option value="50k-100k">Rs.50,000 - Rs.100,000</option>
-                                <option value="100k-250k">Rs.100,000 - Rs.250,000</option>
-                                <option value="250k-500k">Rs.250,000 - Rs.500,000</option>
-                                <option value="5lakhs-plus">Above Rs.5 Lakhs</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Project Details *</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Tell us about your project..."></textarea>
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="newsletter">
-                                <span>Subscribe to our newsletter for updates and insights</span>
-                            </label>
-                        </div>
-
-                        <button type="submit" class="form-submit-btn">Send Message</button>
-                    </form>
-                </div>
-
-                <!-- Contact Information -->
-                <div class="contact-info-section">
-                    <h2>Get In Touch</h2>
-                    <p>We're here to help and answer any questions you might have. We look forward to hearing from you!</p>
-
-                    <div class="contact-info-cards">
-                        <div class="info-item">
-                            <div class="info-icon">📧</div>
-                            <h4>Email</h4>
-                            <p><a href="/cdn-cgi/l/email-protection#92fbfcf4fdd2e2e0fdf6fbe8ebe6f7f1fabcf1fdff"><span class="__cf_email__" data-cfemail="91f8fff7fed1e1e3fef5f8ebe8e5f4f2f9bff2fefc">[email&#160;protected]</span></a></p>
-                            <p><a href="/cdn-cgi/l/email-protection#0272706d666b787b7667616a42656f636b6e2c616d6f"><span class="__cf_email__" data-cfemail="c2b2b0ada6abb8bbb6a7a1aa82a5afa3abaeeca1adaf">[email&#160;protected]</span></a></p>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📱</div>
-                            <h4>Phone</h4>
-                            <p><a href="tel:+11234567890">+1 (123) 456-7890</a></p>
-                            <p><a href="tel:+9779801234567">+977 9801234567</a></p>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">📍</div>
-                            <h4>Office</h4>
-                            <p>Koteshowr 32</p>
-                            <p>Kathmandu, Nepal</p>
-                        </div>
-
-                        <div class="info-item">
-                            <div class="info-icon">⏰</div>
-                            <h4>Business Hours</h4>
-                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                            <p>Saturday: 10:00 AM - 4:00 PM</p>
-                            <p>Sunday: Closed</p>
                         </div>
                     </div>
-
-                    <!-- Social Media -->
-                    <div class="social-section">
-                        <h3>Follow Us</h3>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/company/prodizytech" class="social-icon" target="_blank" rel="noopener noreferrer">
-                                <span>LinkedIn</span>
-                            </a>
-                            <a href="https://twitter.com/prodizytech" class="social-icon" target="_blank" rel="noopener noreferrer">
-                                <span>Twitter</span>
-                            </a>
-                            <a href="https://www.facebook.com/prodizytech" class="social-icon" target="_blank" rel="noopener noreferrer">
-                                <span>Facebook</span>
-                            </a>
-                            <a href="https://www.instagram.com/prodizytech" class="social-icon" target="_blank" rel="noopener noreferrer">
-                                <span>Instagram</span>
-                            </a>
-                            <a href="https://github.com/prodizytech" class="social-icon" target="_blank" rel="noopener noreferrer">
-                                <span>GitHub</span>
-                            </a>
+                    
+                    <div class="testimonial-card">
+                        <div class="quote-icon">"</div>
+                        <p class="testimonial-text">"The level of expertise and dedication from Prodizy Tech is unmatched. They're not just developers, they're true partners in our success."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MJ</div>
+                            <div class="author-info">
+                                <div class="author-name">Michael Johnson</div>
+                                <div class="author-title">CTO, Global Enterprises</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Map Section -->
-            <div class="map-section">
-  <h2 class="section-heading centered">Find Us</h2>
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3531.234567890123!2d85.34591!3d27.67681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb193450000001%3A0xabcdef1234567890!2sKoteshwor%2032%2C%20Kathmandu%2C%20Nepal!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp"
-    width="100%"
-    height="400"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-    title="Map showing Prodizy Tech office in Koteshwor 32, Kathmandu"></iframe>
-</div>
-
-            <!-- FAQ Section -->
-            <div class="faq-section">
-                <h2 class="section-heading centered">Frequently Asked Questions</h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h4>What is your typical response time?</h4>
-                        <p>We typically respond to all inquiries within 24 hours during business days.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Do you work with international clients?</h4>
-                        <p>Yes, we work with clients worldwide and can accommodate different time zones.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>What is your project timeline?</h4>
-                        <p>Project timelines vary depending on scope and complexity. We'll provide a detailed timeline during consultation.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Do you offer ongoing support?</h4>
-                        <p>Yes, all our packages include support periods, and we offer extended maintenance plans.</p>
-                    </div>
-                </div>
-            </div>
+    <!-- CTA Section -->
+    <section class="final-cta">
+        <div class="cta-glow-effect"></div>
+        <div class="container">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Let's work together to bring your vision to life</p>
+            <button class="mega-cta" onclick="window.location.href='contact.html'">
+                <span>GET IN TOUCH</span>
+                <div class="button-glow"></div>
+            </button>
         </div>
     </section>
 
     <!-- Footer -->
     <div id="footer-placeholder"></div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="index.js"></script>
-    <script>
-// Auto-fill form based on URL parameters AND sessionStorage (persists until tab close/refresh)
-window.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlService = urlParams.get('service');
-    const urlPackage = urlParams.get('package');
-    const urlPrice = urlParams.get('price');
-    
-    // Get stored values from sessionStorage
-    let storedService = sessionStorage.getItem('selectedService');
-    let storedPackage = sessionStorage.getItem('selectedPackage');
-    let storedBudget = sessionStorage.getItem('selectedBudget');
-    let storedMessage = sessionStorage.getItem('selectedMessage');
-    
-    // If URL has new parameters, save them and merge with existing
-    if (urlService) {
-        storedService = urlService;
-        sessionStorage.setItem('selectedService', urlService);
-    }
-    
-    if (urlPackage) {
-        storedPackage = urlPackage;
-        sessionStorage.setItem('selectedPackage', urlPackage);
-        
-        // Map package to budget
-        const packageToBudget = {
-            'starter': 'under-50k',
-            'professional': '100k-250k',
-            'enterprise': '250k-500k',
-            'custom': ''
-        };
-        storedBudget = packageToBudget[urlPackage];
-        sessionStorage.setItem('selectedBudget', storedBudget);
-    }
-    
-    // Build combined message based on what's selected
-    const serviceNames = {
-        'web-development': 'Web Development',
-        'mobile-app': 'Mobile App Development',
-        'seo': 'SEO Optimization',
-        'ui-ux-design': 'UI/UX Design',
-        'ai-ml': 'AI & Machine Learning',
-        'cybersecurity': 'Cybersecurity',
-        'digital-marketing': 'Digital Marketing',
-        'it-consulting': 'IT Consulting',
-        'maintenance-support': 'Maintenance & Support'
-    };
-    
-    const packageNames = {
-        'starter': 'Starter Package (Rs. 49,999)',
-        'professional': 'Professional Package (Rs. 1,29,999)',
-        'enterprise': 'Enterprise Package (Rs. 2,49,999)',
-        'custom': 'Custom Package'
-    };
-    
-    // Generate message based on selections (append to existing saved message)
-    if (urlService || urlPackage) {
-        let messageParts = [];
-        
-        if (storedService && serviceNames[storedService]) {
-            messageParts.push(serviceNames[storedService]);
-        }
-        
-        if (storedPackage && packageNames[storedPackage]) {
-            messageParts.push(`the ${packageNames[storedPackage]}`);
-        }
-        
-        if (messageParts.length > 0) {
-            const generatedText = `I'm interested in ${messageParts.join(' and ')}.`;
-            
-            // Get existing saved message from sessionStorage (user's custom text)
-            const existingMessage = storedMessage || '';
-            
-            // Remove ALL previous "I'm interested in..." patterns to avoid duplicates
-            // Use two passes: first for package prices (with parentheses), then for simple services
-            let customText = existingMessage
-                .replace(/I'm interested in [^.]*\(Rs\. [^)]+\)\. ?/g, '')  // Remove patterns with package price
-                .replace(/I'm interested in [^.]+\. ?/g, '')  // Remove patterns without package
-                .replace(/\s+/g, ' ')  // Clean up multiple spaces
-                .trim();
-            
-            // Rebuild: custom text + new generated text
-            if (customText) {
-                storedMessage = customText + ' ' + generatedText;
-            } else {
-                storedMessage = generatedText;
-            }
-            sessionStorage.setItem('selectedMessage', storedMessage);
-        }
-    }
-    
-    // Pre-select service if we have one stored
-    if (storedService) {
-        const serviceSelect = document.getElementById('service');
-        const serviceOption = serviceSelect.querySelector(`option[value="${storedService}"]`);
-        if (serviceOption) {
-            serviceSelect.value = storedService;
-            // Add visual highlight only if it's NEW from URL
-            if (urlService) {
-                serviceSelect.style.borderColor = '#4f46e5';
-                serviceSelect.style.boxShadow = '0 0 0 3px rgba(79, 70, 229, 0.1)';
-                setTimeout(() => {
-                    serviceSelect.style.borderColor = '';
-                    serviceSelect.style.boxShadow = '';
-                }, 2000);
-            }
-        }
-    }
-    
-    // Pre-select budget if we have one stored
-    if (storedBudget) {
-        const budgetSelect = document.getElementById('budget');
-        budgetSelect.value = storedBudget;
-        // Add visual highlight only if it's NEW from URL
-        if (urlPackage) {
-            budgetSelect.style.borderColor = '#4f46e5';
-            budgetSelect.style.boxShadow = '0 0 0 3px rgba(79, 70, 229, 0.1)';
-            setTimeout(() => {
-                budgetSelect.style.borderColor = '';
-                budgetSelect.style.boxShadow = '';
-            }, 2000);
-        }
-    }
-    
-    // Pre-fill message if we have one stored
-    if (storedMessage) {
-        const messageField = document.getElementById('message');
-        messageField.value = storedMessage;
-        if (urlPackage || urlService) {
-            messageField.focus();
-            messageField.setSelectionRange(messageField.value.length, messageField.value.length);
-        }
-    }
-    
-    // Restore personal details from sessionStorage
-    const savedFirstName = sessionStorage.getItem('formFirstName');
-    const savedLastName = sessionStorage.getItem('formLastName');
-    const savedEmail = sessionStorage.getItem('formEmail');
-    const savedPhone = sessionStorage.getItem('formPhone');
-    const savedCompany = sessionStorage.getItem('formCompany');
-    
-    if (savedFirstName) document.getElementById('firstName').value = savedFirstName;
-    if (savedLastName) document.getElementById('lastName').value = savedLastName;
-    if (savedEmail) document.getElementById('email').value = savedEmail;
-    if (savedPhone) document.getElementById('phone').value = savedPhone;
-    if (savedCompany) document.getElementById('company').value = savedCompany;
-    
-    // Auto-save personal details as user types
-    const autoSaveFields = [
-        { id: 'firstName', key: 'formFirstName' },
-        { id: 'lastName', key: 'formLastName' },
-        { id: 'email', key: 'formEmail' },
-        { id: 'phone', key: 'formPhone' },
-        { id: 'company', key: 'formCompany' }
-    ];
-    
-    autoSaveFields.forEach(field => {
-        const element = document.getElementById(field.id);
-        element.addEventListener('input', function() {
-            if (this.value.trim()) {
-                sessionStorage.setItem(field.key, this.value.trim());
-            } else {
-                sessionStorage.removeItem(field.key);
-            }
-        });
-    });
-    
-    // Also save message field as user types (so custom text isn't lost)
-    const messageField = document.getElementById('message');
-    messageField.addEventListener('input', function() {
-        if (this.value.trim()) {
-            sessionStorage.setItem('selectedMessage', this.value.trim());
-        }
-    });
-    
-    // Add listeners to service and budget dropdowns to auto-generate message when changed
-    const serviceSelect = document.getElementById('service');
-    const budgetSelect = document.getElementById('budget');
-    
-    serviceSelect.addEventListener('change', function() {
-        if (this.value) {
-            sessionStorage.setItem('selectedService', this.value);
-            updateMessageFromSelections();
-        }
-    });
-    
-    budgetSelect.addEventListener('change', function() {
-        if (this.value) {
-            sessionStorage.setItem('selectedBudget', this.value);
-            // Try to infer package from budget
-            const budgetToPackage = {
-                'under-50k': 'starter',
-                '100k-250k': 'professional',
-                '250k-500k': 'enterprise'
-            };
-            if (budgetToPackage[this.value]) {
-                sessionStorage.setItem('selectedPackage', budgetToPackage[this.value]);
-                updateMessageFromSelections();
-            }
-        }
-    });
-    
-    // Function to update message based on current selections
-    function updateMessageFromSelections() {
-        const currentService = sessionStorage.getItem('selectedService');
-        const currentPackage = sessionStorage.getItem('selectedPackage');
-        
-        const serviceNames = {
-            'web-development': 'Web Development',
-            'mobile-app': 'Mobile App Development',
-            'seo': 'SEO Optimization',
-            'ui-ux-design': 'UI/UX Design',
-            'ai-ml': 'AI & Machine Learning',
-            'cybersecurity': 'Cybersecurity',
-            'digital-marketing': 'Digital Marketing',
-            'it-consulting': 'IT Consulting',
-            'maintenance-support': 'Maintenance & Support'
-        };
-        
-        const packageNames = {
-            'starter': 'Starter Package (Rs. 49,999)',
-            'professional': 'Professional Package (Rs. 1,29,999)',
-            'enterprise': 'Enterprise Package (Rs. 2,49,999)',
-            'custom': 'Custom Package'
-        };
-        
-        let messageParts = [];
-        
-        if (currentService && serviceNames[currentService]) {
-            messageParts.push(serviceNames[currentService]);
-        }
-        
-        if (currentPackage && packageNames[currentPackage]) {
-            messageParts.push(`the ${packageNames[currentPackage]}`);
-        }
-        
-        if (messageParts.length > 0) {
-            const generatedText = `I'm interested in ${messageParts.join(' and ')}.`;
-            
-            // Get current message
-            const messageField = document.getElementById('message');
-            const currentMessage = messageField.value || '';
-            
-            // Remove ALL occurrences of "I'm interested in..." patterns
-            // Use two passes: first for package prices (with parentheses), then for simple services
-            let customText = currentMessage
-                .replace(/I'm interested in [^.]*\(Rs\. [^)]+\)\. ?/g, '')  // Remove patterns with package price
-                .replace(/I'm interested in [^.]+\. ?/g, '')  // Remove patterns without package
-                .replace(/\s+/g, ' ')  // Clean up multiple spaces
-                .trim();
-            
-            // Rebuild: custom text first, then new generated text
-            if (customText) {
-                messageField.value = customText + ' ' + generatedText;
-            } else {
-                messageField.value = generatedText;
-            }
-            
-            // Save to sessionStorage
-            sessionStorage.setItem('selectedMessage', messageField.value);
-            
-            // Visual feedback
-            messageField.style.borderColor = '#10b981';
-            messageField.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
-            setTimeout(() => {
-                messageField.style.borderColor = '';
-                messageField.style.boxShadow = '';
-            }, 1000);
-        }
-    }
-    
-    // Show notification if NEW parameters were detected
-    if (urlService || urlPackage) {
-        const notification = document.createElement('div');
-        
-        let notificationText = '';
-        if (urlService && urlPackage) {
-            notificationText = '✓ Service and Package pre-selected!';
-        } else if (urlPackage) {
-            notificationText = storedService 
-                ? '✓ Package added to your selected service!'
-                : '✓ Package pre-selected!';
-        } else if (urlService) {
-            notificationText = storedPackage 
-                ? '✓ Service added to your selected package!'
-                : '✓ Service pre-selected!';
-        }
-        
-        notification.textContent = notificationText;
-        
-        Object.assign(notification.style, {
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            padding: '12px 20px',
-            background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-            color: 'white',
-            borderRadius: '8px',
-            fontSize: '14px',
-            fontWeight: '500',
-            zIndex: '9999',
-            boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
-            animation: 'slideIn 0.3s ease'
-        });
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.animation = 'slideIn 0.3s ease reverse';
-            setTimeout(() => notification.remove(), 300);
-        }, 4000);
-    }
-});
-
-// Form submission handler
-document.getElementById('contactForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  
-  const submitBtn = e.target.querySelector('.form-submit-btn');
-  const originalBtnText = submitBtn.textContent;
-  
-  // Get form data
-  const formData = {
-    firstName: e.target.firstName.value.trim(),
-    lastName: e.target.lastName.value.trim(),
-    email: e.target.email.value.trim(),
-    phone: e.target.phone.value.trim(),
-    company: e.target.company.value.trim(),
-    service: e.target.service.value,
-    budget: e.target.budget.value,
-    message: e.target.message.value.trim(),
-    newsletter: e.target.newsletter.checked
-  };
-
-  // Show loading state
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
-  submitBtn.style.opacity = '0.7';
-
-  try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-
-    const result = await response.json();
-
-    if (response.ok) {
-      // Success animation
-      submitBtn.textContent = '✓ Message Sent!';
-      submitBtn.style.background = '#10b981';
-      showNotification('Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
-      
-      // Clear ALL sessionStorage on successful submission
-      sessionStorage.removeItem('selectedService');
-      sessionStorage.removeItem('selectedPackage');
-      sessionStorage.removeItem('selectedBudget');
-      sessionStorage.removeItem('selectedMessage');
-      sessionStorage.removeItem('formFirstName');
-      sessionStorage.removeItem('formLastName');
-      sessionStorage.removeItem('formEmail');
-      sessionStorage.removeItem('formPhone');
-      sessionStorage.removeItem('formCompany');
-      
-      setTimeout(() => {
-        e.target.reset();
-        submitBtn.textContent = originalBtnText;
-        submitBtn.style.background = '';
-        submitBtn.style.opacity = '';
-        submitBtn.disabled = false;
-      }, 2000);
-    } else {
-      throw new Error(result.message || 'Failed to send message');
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    showNotification('Oops! Something went wrong. Please try again or email us at prodizytech@gmail.com', 'error');
-    submitBtn.textContent = originalBtnText;
-    submitBtn.style.opacity = '';
-    submitBtn.disabled = false;
-  }
-});
-
-// Notification function
-function showNotification(message, type = 'info') {
-  // Remove existing notification if any
-  const existing = document.querySelector('.form-notification');
-  if (existing) existing.remove();
-  
-  // Create notification element
-  const notification = document.createElement('div');
-  notification.className = `form-notification ${type}`;
-  notification.textContent = message;
-  
-  // Style with black background and silver metallic text
-  Object.assign(notification.style, {
-    position: 'fixed',
-    top: '20px',
-    right: '20px',
-    padding: '16px 24px',
-    borderRadius: '8px',
-    color: '#d4d4d4',  // Silver metallic
-    fontSize: '14px',
-    fontWeight: '600',
-    maxWidth: '400px',
-    zIndex: '9999',
-    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
-    animation: 'slideIn 0.3s ease',
-    background: type === 'success' 
-      ? 'linear-gradient(135deg, #1a1a1a 0%, #000000 100%)'  // Black gradient for success
-      : 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',  // Red gradient for errors
-    border: '1px solid #404040',
-    textShadow: '0 0 10px rgba(212, 212, 212, 0.5), 0 1px 2px rgba(255,255,255,0.3)'  // Metallic glow
-  });
-  
-  // Add animation
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideIn {
-      from { 
-        transform: translateX(400px); 
-        opacity: 0; 
-      }
-      to { 
-        transform: translateX(0); 
-        opacity: 1; 
-      }
-    }
-  `;
-  document.head.appendChild(style);
-  
-  // Add to page
-  document.body.appendChild(notification);
-  
-  // Auto remove after 5 seconds
-  setTimeout(() => {
-    notification.style.animation = 'slideIn 0.3s ease reverse';
-    setTimeout(() => notification.remove(), 300);
-  }, 5000);
-}
-</script>
+    <script src="index.js"></script>
     <script src="navbar.js"></script>
 </body>
 </html>
