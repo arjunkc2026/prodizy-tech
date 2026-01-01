@@ -287,17 +287,21 @@ window.addEventListener('DOMContentLoaded', function() {
             // Get existing saved message from sessionStorage (user's custom text)
             const existingMessage = storedMessage || '';
             
-            // Only append if the generated text is not already in the message
-            if (!existingMessage.includes(generatedText)) {
-                if (existingMessage.trim()) {
-                    // User has custom text - append our message to it
-                    storedMessage = existingMessage.trim() + ' ' + generatedText;
-                } else {
-                    // Message is empty - just use our generated text
-                    storedMessage = generatedText;
-                }
-                sessionStorage.setItem('selectedMessage', storedMessage);
+            // Remove ALL previous "I'm interested in..." patterns to avoid duplicates
+            // Use two passes: first for package prices (with parentheses), then for simple services
+            let customText = existingMessage
+                .replace(/I'm interested in [^.]*\(Rs\. [^)]+\)\. ?/g, '')  // Remove patterns with package price
+                .replace(/I'm interested in [^.]+\. ?/g, '')  // Remove patterns without package
+                .replace(/\s+/g, ' ')  // Clean up multiple spaces
+                .trim();
+            
+            // Rebuild: custom text + new generated text
+            if (customText) {
+                storedMessage = customText + ' ' + generatedText;
+            } else {
+                storedMessage = generatedText;
             }
+            sessionStorage.setItem('selectedMessage', storedMessage);
         }
     }
     
@@ -399,16 +403,7 @@ window.addEventListener('DOMContentLoaded', function() {
     budgetSelect.addEventListener('change', function() {
         if (this.value) {
             sessionStorage.setItem('selectedBudget', this.value);
-            // Try to infer package from budget
-            const budgetToPackage = {
-                'under-50k': 'starter',
-                '100k-250k': 'professional',
-                '250k-500k': 'enterprise'
-            };
-            if (budgetToPackage[this.value]) {
-                sessionStorage.setItem('selectedPackage', budgetToPackage[this.value]);
-                updateMessageFromSelections();
-            }
+            // Budget is separate from packages - don't auto-generate message for it
         }
     });
     
@@ -451,14 +446,24 @@ window.addEventListener('DOMContentLoaded', function() {
             
             // Get current message
             const messageField = document.getElementById('message');
-            const currentMessage = messageField.value || sessionStorage.getItem('selectedMessage') || '';
+            const currentMessage = messageField.value || '';
             
-            // Remove any previous "I'm interested in..." text to avoid duplicates
-            let cleanMessage = currentMessage.replace(/I'm interested in .+?\./g, '').trim();
+            console.log('DEBUG - Current message:', currentMessage);
             
-            // Append new selection
-            if (cleanMessage) {
-                messageField.value = cleanMessage + ' ' + generatedText;
+            // Remove ALL occurrences of "I'm interested in..." patterns
+            // Use two passes: first for package prices (with parentheses), then for simple services
+            let customText = currentMessage
+                .replace(/I'm interested in [^.]*\(Rs\. [^)]+\)\. ?/g, '')  // Remove patterns with package price
+                .replace(/I'm interested in [^.]+\. ?/g, '')  // Remove patterns without package
+                .replace(/\s+/g, ' ')  // Clean up multiple spaces
+                .trim();
+            
+            console.log('DEBUG - Custom text after cleanup:', customText);
+            console.log('DEBUG - Generated text:', generatedText);
+            
+            // Rebuild: custom text first, then new generated text
+            if (customText) {
+                messageField.value = customText + ' ' + generatedText;
             } else {
                 messageField.value = generatedText;
             }

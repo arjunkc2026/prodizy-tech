@@ -1733,3 +1733,7 @@ input:checked + .toggle-slider:before {
     color: #606060;
     margin: 0 15px;
 }
+.nav-menu{
+    display: flex;
+    gap: 25px;
+}
