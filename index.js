@@ -295,7 +295,7 @@ document.addEventListener('mousemove', (e) => {
             position: fixed;
             width: 5px;
             height: 5px;
-            background: rgba(192, 192, 192, 0.3);
+            background: rgba(152, 55, 55, 0.3);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
