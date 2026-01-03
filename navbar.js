@@ -27,22 +27,25 @@ function initNavbar() {
     // ============================================
     // NAVBAR SCROLL EFFECT
     // ============================================
+    document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.getElementById('navbar');
+    if (!navbar) return; // safety check
+
     let lastScroll = 0;
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-        
-        // Add scrolled class when scrolled down
+
+        // Add 'scrolled' class when scrolled down 100px
         if (currentScroll > 100) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-        
+
         lastScroll = currentScroll;
     });
-
+});
     // ============================================
     // MOBILE MENU TOGGLE
     // ============================================

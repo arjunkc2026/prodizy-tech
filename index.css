@@ -66,11 +66,7 @@ body {
 
 
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 35px;
-}
+
 
 .nav-menu a {
     color: #a0a0a0;
@@ -1376,4 +1372,50 @@ body {
   color: white;
   -webkit-text-fill-color: white;
   filter: none;
+}
+
+/* ========================
+   Footer Bottom Responsive
+   ======================== */
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.footer-legal {
+    display: flex;
+    flex-wrap: nowrap; /* keep links in one line */
+    white-space: nowrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.footer-legal a {
+    text-decoration: none;
+    color: inherit;
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem); /* responsive text size */
+}
+
+.footer-legal .separator {
+    margin: 0 0.5rem;
+}
+
+.footer-bottom p {
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    white-space: nowrap;
+    margin: 0;
+}
+
+/* Optional: small tweaks for very small screens */
+@media (max-width: 480px) {
+    .footer-legal {
+        gap: 0.3rem;
+    }
+    .footer-legal .separator {
+        margin: 0 0.2rem;
+    }
 }
