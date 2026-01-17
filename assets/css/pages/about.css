@@ -1,0 +1,42 @@
+/* ===================================
+   ABOUT PAGE
+   Company information and stats
+   =================================== */
+
+/* Stats Section */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    border-radius: 10px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: rgba(192, 192, 192, 0.3);
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #c0c0c0, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    color: #a0a0a0;
+    font-size: 14px;
+    letter-spacing: 1px;
+}

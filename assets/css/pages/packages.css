@@ -1,0 +1,343 @@
+/* ===================================
+   PACKAGES PAGE
+   Pricing tiers and comparisons
+   =================================== */
+
+/* Pricing Grid */
+.pricing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0 60px 0;
+}
+
+.toggle-label {
+    color: #a0a0a0;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.discount-badge {
+    color: #c0c0c0;
+    font-size: 12px;
+    padding: 2px 8px;
+    background: rgba(192, 192, 192, 0.1);
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #2a2a2a;
+    transition: 0.4s;
+    border-radius: 24px;
+    border: 1px solid rgba(192, 192, 192, 0.2);
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: #808080;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #1a1a1a;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+    background-color: #c0c0c0;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.pricing-card {
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    padding: 40px 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.pricing-card.popular {
+    border-color: rgba(192, 192, 192, 0.4);
+    transform: scale(1.05);
+}
+
+.pricing-card:hover {
+    border-color: rgba(192, 192, 192, 0.3);
+    transform: translateY(-10px);
+}
+
+.pricing-card.popular:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.package-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(128, 128, 128, 0.2);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+    color: #a0a0a0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.popular-badge {
+    background: rgba(192, 192, 192, 0.2);
+    border-color: rgba(192, 192, 192, 0.5);
+    color: #c0c0c0;
+}
+
+.pricing-card h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.price {
+    margin: 30px 0;
+}
+
+.currency {
+    font-size: 24px;
+    color: #c0c0c0;
+    vertical-align: super;
+}
+
+.amount {
+    font-size: 56px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #c0c0c0, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.period {
+    font-size: 16px;
+    color: #808080;
+}
+
+.package-description {
+    color: #a0a0a0;
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.package-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.package-features li {
+    color: #909090;
+    font-size: 13px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.05);
+}
+
+.package-btn {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 2px solid #c0c0c0;
+    color: #c0c0c0;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.package-btn:hover {
+    background: rgba(192, 192, 192, 0.2);
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+}
+
+
+/* Custom Package */
+.custom-package-section {
+    margin: 60px 0;
+}
+
+.custom-package-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-radius: 10px;
+    border: 2px solid rgba(192, 192, 192, 0.3);
+    text-align: center;
+}
+
+.custom-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.custom-package-card h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.custom-package-card p {
+    color: #a0a0a0;
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.custom-btn {
+    padding: 15px 40px;
+    background: transparent;
+    border: 2px solid #c0c0c0;
+    color: #c0c0c0;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.custom-btn:hover {
+    background: rgba(192, 192, 192, 0.2);
+    box-shadow: 0 0 30px rgba(192, 192, 192, 0.4);
+}
+
+
+/* Add-ons Section */
+.addons-section {
+    margin: 80px 0;
+}
+
+.addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.addon-card {
+    padding: 30px 25px;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.addon-card:hover {
+    border-color: rgba(192, 192, 192, 0.3);
+    transform: translateY(-5px);
+}
+
+.addon-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.addon-card h4 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.addon-price {
+    color: #c0c0c0;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.addon-card p {
+    color: #909090;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* Comparison Table */
+.comparison-section {
+    margin: 80px 0;
+}
+
+.comparison-table-wrapper {
+    overflow-x: auto;
+    margin-top: 40px;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.comparison-table thead {
+    background: rgba(192, 192, 192, 0.1);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.05);
+}
+
+.comparison-table th {
+    color: #c0c0c0;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.comparison-table td {
+    color: #a0a0a0;
+    font-size: 13px;
+}
+
+.comparison-table tbody tr:hover {
+    background: rgba(192, 192, 192, 0.05);
+}

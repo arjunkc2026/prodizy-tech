@@ -1,0 +1,131 @@
+/* ===================================
+   SERVICES PAGE
+   Service offerings and process
+   =================================== */
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.service-card {
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    padding: 40px 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    transition: all 0.3s ease;
+}
+
+.service-card.featured {
+    border-color: rgba(192, 192, 192, 0.3);
+}
+
+.service-card:hover {
+    border-color: rgba(192, 192, 192, 0.4);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px rgba(192, 192, 192, 0.2);
+}
+
+.service-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.service-description {
+    color: #a0a0a0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.service-features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.service-features li {
+    color: #909090;
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.05);
+}
+
+.service-btn {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 2px solid #808080;
+    color: #a0a0a0;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.service-btn:hover {
+    border-color: #c0c0c0;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+}
+
+
+/* Process Section */
+.process-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.process-step {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    transition: all 0.3s ease;
+}
+
+.process-step:hover {
+    border-color: rgba(192, 192, 192, 0.3);
+    transform: translateY(-5px);
+}
+
+.step-number {
+    font-size: 36px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #c0c0c0, #808080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+}
+
+.process-step h4 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.process-step p {
+    color: #909090;
+    font-size: 13px;
+    line-height: 1.6;
+}

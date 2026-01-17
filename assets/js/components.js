@@ -2,7 +2,7 @@
 async function loadComponents() {
     // Load Navigation
     try {
-        const navResponse = await fetch('navbar.html');
+        const navResponse = await fetch('/pages/navbar.html');
         const navHTML = await navResponse.text();
         document.getElementById('navbar-placeholder').innerHTML = navHTML;
         
@@ -19,7 +19,7 @@ async function loadComponents() {
 
     // Load Footer
     try {
-        const footerResponse = await fetch('footer.html');
+        const footerResponse = await fetch('/pages/footer.html');
         const footerHTML = await footerResponse.text();
         document.getElementById('footer-placeholder').innerHTML = footerHTML;
     } catch (error) {
@@ -29,12 +29,17 @@ async function loadComponents() {
 
 // Set active navigation link based on current page
 function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+    const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
     
     navLinks.forEach(link => {
-        const linkPage = link.getAttribute('href');
-        if (linkPage === currentPage) {
+        const linkHref = link.getAttribute('href');
+        
+        // Check if current path matches the link
+        if (currentPath === linkHref || 
+            currentPath.endsWith(linkHref) ||
+            (currentPath === '/' && linkHref === '/index.html') ||
+            (currentPath === '/index.html' && linkHref === '/index.html')) {
             link.classList.add('active');
         } else {
             link.classList.remove('active');

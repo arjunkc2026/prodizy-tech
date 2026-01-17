@@ -1,0 +1,82 @@
+/* ===================================
+   TEAM PAGE
+   Team member profiles and grid
+   =================================== */
+
+/* Team Grid */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.team-card {
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    padding: 40px 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.team-card:hover {
+    border-color: rgba(192, 192, 192, 0.3);
+    transform: translateY(-10px);
+}
+
+.team-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(192, 192, 192, 0.2);
+}
+
+.avatar-icon {
+    font-size: 50px;
+}
+
+.team-card h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.team-role {
+    color: #c0c0c0;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.team-bio {
+    color: #909090;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.team-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-link {
+    color: #808080;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    color: #c0c0c0;
+}

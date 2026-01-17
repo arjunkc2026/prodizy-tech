@@ -1,0 +1,117 @@
+/* ===================================
+   FORM COMPONENTS
+   All form inputs, labels, and validation
+   =================================== */
+
+/* Contact Layout */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.contact-form-section h2,
+.contact-info-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #c0c0c0, #808080);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-intro {
+    color: #a0a0a0;
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: #c0c0c0;
+    font-size: 13px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 15px;
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: rgba(192, 192, 192, 0.5);
+    background: rgba(26, 26, 26, 0.8);
+}
+
+.form-group textarea {
+    resize: vertical;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checkbox-group {
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #a0a0a0;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.form-submit-btn {
+    padding: 15px;
+    background: transparent;
+    border: 2px solid #c0c0c0;
+    color: #c0c0c0;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.form-submit-btn:hover {
+    background: rgba(192, 192, 192, 0.2);
+    box-shadow: 0 0 30px rgba(192, 192, 192, 0.4);
+}

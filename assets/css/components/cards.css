@@ -1,0 +1,137 @@
+/* ===================================
+   CARD COMPONENTS
+   All card styles and grid layouts
+   =================================== */
+
+/* Content Blocks - About Page */
+.content-block {
+    margin-bottom: 80px;
+    padding: 50px;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    border-radius: 10px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.content-block h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.content-block p {
+    color: #a0a0a0;
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.content-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.content-block.full-width {
+    background: transparent;
+    border: none;
+    padding: 50px 0;
+}
+
+.story-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.story-content p {
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+
+/* Contact Info Cards */
+.contact-info-section {
+    padding: 40px;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    border-radius: 10px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.contact-info-section > p {
+    color: #a0a0a0;
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contact-info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-item {
+    padding: 25px;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.info-item .info-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.info-item h4 {
+    font-size: 18px;
+    color: #c0c0c0;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.info-item p,
+.info-item a {
+    color: #909090;
+    font-size: 13px;
+    line-height: 1.8;
+    text-decoration: none;
+}
+
+.info-item a:hover {
+    color: #c0c0c0;
+}
+
+
+/* Values Grid */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.value-card {
+    padding: 30px;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 8px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    border-color: rgba(192, 192, 192, 0.3);
+    transform: translateY(-5px);
+}
+
+.value-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #c0c0c0;
+    letter-spacing: 1px;
+}
+
+.value-card p {
+    color: #909090;
+    font-size: 14px;
+    line-height: 1.6;
+}

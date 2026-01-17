@@ -1,0 +1,76 @@
+/* ===================================
+   FOOTER
+   Site footer and social links
+   =================================== */
+
+/* Footer */
+.footer {
+    background: #000000;
+    padding: 80px 0 30px 0;
+    border-top: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 80px;
+    margin-bottom: 50px;
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(192, 192, 192, 0.3));
+    margin-bottom: 20px;
+}
+
+.footer-brand p {
+    color: #808080;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.link-column h4 {
+    color: #c0c0c0;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.link-column a {
+    display: block;
+    color: #808080;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+.link-column a:hover {
+    color: #c0c0c0;
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(192, 192, 192, 0.05);
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #606060;
+    font-size: 12px;
+    letter-spacing: 1px;
+}

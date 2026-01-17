@@ -1,0 +1,176 @@
+/* ===================================
+   CONTACT PAGE
+   Contact form, map, and social
+   =================================== */
+
+/* Social Section */
+.social-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.social-section h3 {
+    font-size: 20px;
+    color: #c0c0c0;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.social-icon {
+    padding: 10px 20px;
+    background: rgba(26, 26, 26, 0.5);
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    border-radius: 5px;
+    color: #a0a0a0;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    border-color: rgba(192, 192, 192, 0.4);
+    color: #c0c0c0;
+    transform: translateY(-2px);
+}
+
+
+/* Map Section */
+.map-section {
+    margin: 80px 0;
+}
+
+.map-placeholder {
+    height: 400px;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    border-radius: 10px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.map-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.map-placeholder p {
+    color: #a0a0a0;
+    font-size: 16px;
+}
+
+.map-note {
+    color: #606060;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+
+/* FAQ Section */
+.faq-section {
+    margin: 80px 0;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.faq-item {
+    padding: 30px;
+    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+    border-radius: 8px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(192, 192, 192, 0.3);
+    transform: translateY(-5px);
+}
+
+.faq-item h4 {
+    font-size: 16px;
+    color: #c0c0c0;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.faq-item p {
+    color: #909090;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* CTA Section */
+.cta-section {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+}
+
+.cta-section h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #c0c0c0, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-section p {
+    color: #a0a0a0;
+    font-size: 16px;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+.cta-button {
+    padding: 18px 50px;
+    background: transparent;
+    border: 2px solid #c0c0c0;
+    color: #c0c0c0;
+    font-size: 14px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(192, 192, 192, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    background: rgba(192, 192, 192, 0.2);
+    box-shadow: 0 0 30px rgba(192, 192, 192, 0.4);
+    transform: translateY(-2px);
+}
