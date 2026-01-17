@@ -477,6 +477,10 @@
 
 .preloader-content {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .preloader-logo {
@@ -485,7 +489,7 @@
     object-fit: contain;
     animation: logoSpin 2s ease-in-out infinite;
     filter: drop-shadow(0 0 30px rgba(192, 192, 192, 0.5));
-    margin-bottom: 30px;
+    margin-bottom: 40px; /* Increased spacing */
 }
 
 @keyframes logoSpin {
@@ -493,10 +497,10 @@
         transform: scale(1) rotate(0deg);
     }
     50% {
-        transform: scale(1.1) rotate(360deg);  /* Full spin */
+        transform: scale(1.1) rotate(360deg);
     }
     100% {
-        transform: scale(1) rotate(720deg);  /* Two full spins */
+        transform: scale(1) rotate(720deg);
     }
 }
 
@@ -506,7 +510,7 @@
     background: rgba(192, 192, 192, 0.2);
     border-radius: 10px;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 0 auto; /* Center the loading bar */
 }
 
 .loading-progress {
