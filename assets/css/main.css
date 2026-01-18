@@ -2,8 +2,9 @@
    MAIN CSS - IMPORT CENTRAL
    Imports all modular CSS files
    =================================== */
-
-  
+ /* ADD AT TOP - Premium fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap'); 
 
 /* Design Tokens */
 @import url('variables.css');
@@ -833,4 +834,20 @@
     .whatsapp-tooltip {
         display: none;
     }
+}
+
+/* ADD AT END - Smooth micro-interactions */
+* {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
 }

@@ -60,10 +60,12 @@
      TYPOGRAPHY
      ============================================ */
   
-  /* Font Families */
-  --font-family-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --font-family-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --font-family-mono: 'Courier New', Courier, monospace;
+
+  /* Font Families - REPLACE LINES 64-66 */
+/* Premium font stack - REPLACE LINES 64-66 */
+--font-family-base: 'Outfit', -apple-system, sans-serif;
+--font-family-heading: 'Playfair Display', Georgia, serif;  /* Luxury serif */
+--font-family-mono: 'SF Mono', Monaco, monospace;
   
   /* Font Sizes */
   --font-size-xs: 12px;
@@ -127,6 +129,11 @@
   --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
   --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+  /* ADD AFTER LINE 134 - New colored shadows */
+--shadow-primary: 0 10px 40px rgba(99, 102, 241, 0.3);
+--shadow-secondary: 0 10px 40px rgba(6, 182, 212, 0.3);
+--shadow-accent: 0 10px 40px rgba(16, 185, 129, 0.3);
   
   /* Special Effects */
   --shadow-glow: 0 0 20px rgba(192, 192, 192, 0.4);
@@ -156,13 +163,14 @@
   --z-popover: 1100;
   --z-tooltip: 1200;
   
-  /* ============================================
-     GRADIENTS
-     ============================================ */
-  --gradient-primary: linear-gradient(135deg, #e0e0e0, #808080);
-  --gradient-secondary: linear-gradient(135deg, #c0c0c0, #a0a0a0);
-  --gradient-bg: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-  --gradient-shine: linear-gradient(90deg, #c0c0c0, #ffffff);
+/* ============================================
+   GRADIENTS - REPLACE LINES 162-166
+   ============================================ */
+--gradient-primary: linear-gradient(135deg, #6366f1, #06b6d4);
+--gradient-secondary: linear-gradient(135deg, #06b6d4, #10b981);
+--gradient-bg: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+--gradient-shine: linear-gradient(90deg, #6366f1, #06b6d4, #10b981);
+--gradient-hero-text: linear-gradient(135deg, #06b6d4, #6366f1, #10b981);
   
   /* ============================================
      OPACITY LEVELS

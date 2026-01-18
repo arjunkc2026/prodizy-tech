@@ -82,15 +82,25 @@
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
 }
 
+
+/* REPLACE entire .card-glow with this: */
 .card-glow {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(192, 192, 192, 0.1), transparent);
-    opacity: 0;
-    transition: opacity 0.5s ease;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.15) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.service-showcase-card:hover .card-glow {
+  opacity: 1;
 }
 
 .service-showcase-card:hover .card-glow {
@@ -541,4 +551,40 @@
   color: white;
   -webkit-text-fill-color: white;
   filter: none;
+}
+
+/* ADD AFTER .service-showcase-card definition */
+.service-showcase-card {
+  position: relative;
+  overflow: hidden;
+  /* ...keep existing styles... */
+}
+
+/* ADD THIS NEW PSEUDO-ELEMENT */
+.service-showcase-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(99, 102, 241, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: 0.6s;
+}
+
+.service-showcase-card:hover::before {
+  left: 150%;
+}
+
+/* REPLACE or UPDATE existing hover */
+.service-showcase-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-primary);
+  border-color: var(--color-primary);
 }

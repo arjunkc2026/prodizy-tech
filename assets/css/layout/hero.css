@@ -7,33 +7,56 @@
 .hero {
     padding-top: 169px;
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 
+
 .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%);
+  
+  /* ADD THESE LINES - Subtle texture */
+  background-image: 
+    radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.hero-background::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+  animation: pulseGlow 8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
 .grid-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        linear-gradient(rgba(192, 192, 192, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(192, 192, 192, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: gridMove 20s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* REPLACE with thinner grid: */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0.5px, transparent 0.5px);
+  background-size: 80px 80px;  /* Larger, more spacious */
+  animation: gridMove 30s linear infinite;  /* Slower */
 }
 
 @keyframes gridMove {
@@ -92,9 +115,10 @@
 }
 
 .hero-content {
-    position: relative;
-    text-align: center;
-    z-index: 2;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  
 }
 
 
@@ -128,6 +152,8 @@
     animation: pulseRing 3s infinite ease-in-out;
 }
 
+
+
 @keyframes pulseRing {
     0%, 100% {
         transform: translate(-50%, -50%) scale(1);
@@ -137,6 +163,7 @@
         transform: translate(-50%, -50%) scale(1.1);
         opacity: 0.6;
     }
+    
 }
 
 .logo-container {
@@ -152,7 +179,7 @@
     box-shadow: 
         0 0 60px rgba(192, 192, 192, 0.2),
         inset 0 0 60px rgba(0, 0, 0, 0.5);
-    animation: logoFloat 6s infinite ease-in-out;
+    animation: logoFloat 3s infinite ease-in-out;
 }
 
 @keyframes logoFloat {
@@ -222,10 +249,11 @@
 
 
 /* Hero Title with Glitch */
+
+
 .hero-title {
     font-size: 100px;
-    font-weight: 300;
-    letter-spacing: 15px;
+    font-weight: 400;
     margin-top: 30px;
     margin-bottom: 30px;
     background: linear-gradient(135deg, #ffffff, #808080, #ffffff);
@@ -234,7 +262,26 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: shimmer 3s infinite linear, titleEntrance 1s ease-out 0.5s backwards;
-    position: relative;
+  letter-spacing: -0.03em;  /* Tighter tracking */
+  position: relative;
+    
+}
+
+/* ADD - Subtle underline accent */
+.hero-title::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
 }
 
 @keyframes shimmer {
