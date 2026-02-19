@@ -10,14 +10,13 @@
     <meta property="og:type" content="website"> 
     <link rel="canonical" href="https://prodizytech.com/team">
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="icon" type="image/png" href="/assets/images/icons/favicon.ico">
+    <!-- Fixed: favicon type changed from image/png to image/x-icon to match .ico format -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/icons/favicon.ico">
     <script src="/assets/js/components.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Page Header -->
     <section class="page-header">
         <div class="particles" id="particles"></div>
         <div class="container">
@@ -26,18 +25,15 @@
         </div>
     </section>
 
-    <!-- Team Content -->
-    <!-- Meet Our Team -->
     <section class="team-section">
         <div class="container">
             <p class="intro-text" style="margin-bottom: 80px;">Get to know the talented individuals who make Prodizy Tech exceptional</p>
 
-            <!-- Triangle/Pyramid Organizational Chart -->
             <div class="org-chart">
-                <!-- CEO Level (Top of Triangle) -->
+
+                <!-- Level 1: CEO -->
                 <div class="org-level level-1">
                     <div class="org-member ceo">
-                        <div class="connector-line ceo-line"></div>
                         <div class="member-card">
                             <div class="member-avatar">
                                 <img src="/assets/images/team/samir.jpeg" alt="Samir Paudel">
@@ -53,10 +49,9 @@
                     </div>
                 </div>
 
-                <!-- Executive Level (3 people) -->
+                <!-- Level 2: C-Suite row 1 (CFO, CTO, COO) -->
                 <div class="org-level level-2">
-                    <div class="org-member">
-                        <div class="connector-line"></div>
+                    <div class="org-member" id="card-cfo">
                         <div class="member-card">
                             <div class="member-avatar">
                                 <img src="/assets/images/team/rajan.jpg" alt="Rajan Patel">
@@ -66,12 +61,12 @@
                             <p class="member-bio">Strategic leader with expertise in business development and operations. Driving growth and innovation at Prodizy Tech.</p>
                             <div class="member-links">
                                 <a href="mailto:rajan@prodizytech.com">Email</a>
+                                <!-- TODO: Replace # with actual LinkedIn URL -->
                                 <a href="#">LinkedIn</a>
                             </div>
                         </div>
                     </div>
-                    <div class="org-member">
-                        <div class="connector-line"></div>
+                    <div class="org-member" id="card-cto">
                         <div class="member-card">
                             <div class="member-avatar">
                                 <img src="/assets/images/team/arjun.jpeg" alt="Arjun KC">
@@ -85,8 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="org-member">
-                        <div class="connector-line"></div>
+                    <div class="org-member" id="card-coo">
                         <div class="member-card">
                             <div class="member-avatar">
                                 <img src="/assets/images/team/roshan.jpeg" alt="Roshan Kumar Yadav">
@@ -102,46 +96,61 @@
                     </div>
                 </div>
 
-                <!-- Management Level (2 people) -->
-                <div class="org-level level-2">
-                         <div class="org-member">
-                        <div class="connector-line"></div>
+                <!-- Level 2b: CPO -->
+                <div class="org-level level-2b">
+                    <div class="org-member">
                         <div class="member-card">
                             <div class="member-avatar">
                                 <img src="/assets/images/team/aayush.jpeg" alt="Aayush KC">
                             </div>
                             <h3>Aayush KC</h3>
                             <p class="member-role">Chief Product Officer</p>
-                            <p class="member-bio">Driving product vision and strategy by aligning user needs, business goals, 
-            and technology. Leads product development from concept to launch, ensuring 
-            impactful, scalable, and user-focused solutions.</p>
+                            <p class="member-bio">Driving product vision and strategy by aligning user needs, business goals, and technology. Leads product development from concept to launch, ensuring impactful, scalable, and user-focused solutions.</p>
                             <div class="member-links">
                                 <a href="mailto:aayush@prodizytech.com">Email</a>
-                                <a href="#">LinkedIn</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="org-member">
-                        <div class="connector-line"></div>
-                        <div class="member-card">
-                            <div class="member-avatar">👨</div>
-                            <h3>Kasam Darnal</h3>
-                            <p class="member-role">Manager</p>
-                            <p class="member-bio">Oversees team operations and project execution, ensuring goals are met on time 
-    and standards are maintained. Focused on guiding team members, improving workflows, 
-    and delivering consistent, high-quality outcomes.</p>
-                            <div class="member-links">
-                                <a href="mailto:kasam@prodizytech.com">Email</a>
+                                <!-- TODO: Replace # with actual LinkedIn URL -->
                                 <a href="#">LinkedIn</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Internship Opportunity (Bottom) -->
+                <!-- Level 3: Management -->
+                <div class="org-level level-3">
+                    <div class="org-member">
+                        <div class="member-card">
+                            <div class="member-avatar">👨</div>
+                            <h3>Kasam Darnal</h3>
+                            <p class="member-role">Manager</p>
+                            <p class="member-bio">Oversees team operations and project execution, ensuring goals are met on time and standards are maintained. Focused on guiding team members, improving workflows, and delivering consistent, high-quality outcomes.</p>
+                            <div class="member-links">
+                                <a href="mailto:kasam@prodizytech.com">Email</a>
+                                <!-- TODO: Replace # with actual LinkedIn URL -->
+                                <a href="#">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="org-member">
+                        <div class="member-card">
+                            <div class="member-avatar">
+                                <!-- Fixed: alt text updated from "John Doe" to actual person's name -->
+                                <img src="/assets/images/team/new_manxe.jpg" alt="New Manxe">
+                            </div>
+                            <h3>New Manxe</h3>
+                            <p class="member-role">Human Resources</p>
+                            <p class="member-bio">Manages talent acquisition, employee relations, and organizational culture. Dedicated to building a supportive and thriving workplace where every team member can grow and do their best work.</p>
+                            <div class="member-links">
+                                <a href="mailto:hr@prodizytech.com">Email</a>
+                                <!-- TODO: Replace # with actual LinkedIn URL -->
+                                <a href="#">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 4: Internship -->
                 <div class="org-level level-4">
                     <div class="org-member opportunity">
-                        <div class="connector-line"></div>
                         <div class="member-card internship">
                             <div class="member-avatar">🎯</div>
                             <h3>Join Our Team</h3>
@@ -154,11 +163,11 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Join Team CTA -->
     <section class="cta-section">
         <div class="container">
             <h2>Want to Join Our Team?</h2>
@@ -167,10 +176,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <div id="footer-placeholder"></div>
 
     <script src="/assets/js/index.js"></script>
     <script src="/assets/js/navbar.js"></script>
+    <script src="/assets/js/team.js"></script>
 </body>
 </html>
