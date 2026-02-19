@@ -147,23 +147,33 @@
     transform: translate(-50%, -50%);
     width: 350px;
     height: 350px;
-    border: 2px solid rgba(192, 192, 192, 0.2);
+    border: 2px solid rgba(192, 192, 192, 0.25);
     border-radius: 50%;
-    animation: pulseRing 3s infinite ease-in-out;
+    animation: ringFloat 3s infinite ease-in-out;
 }
 
+.logo-glow-ring-outer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 430px;
+    height: 430px;
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    border-radius: 50%;
+    animation: ringFloat 3s infinite ease-in-out;
+    animation-delay: 0.4s;
+}
 
-
-@keyframes pulseRing {
+@keyframes ringFloat {
     0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.3;
+        transform: translate(-50%, -50%) translateY(0px) scale(1);
+        opacity: 0.4;
     }
     50% {
-        transform: translate(-50%, -50%) scale(1.1);
-        opacity: 0.6;
+        transform: translate(-50%, -50%) translateY(-18px) scale(1.12);
+        opacity: 0.7;
     }
-    
 }
 
 .logo-container {
@@ -183,8 +193,8 @@
 }
 
 @keyframes logoFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-18px); }
 }
 
 .hero-logo {
@@ -547,4 +557,50 @@
     width: 1px;
     height: 60px;
     background: linear-gradient(180deg, transparent, rgba(192, 192, 192, 0.3), transparent);
+}
+
+/* ===================================
+   LOGO & RINGS - RESPONSIVE
+   =================================== */
+
+@media (max-width: 768px) {
+    .logo-showcase {
+        margin-bottom: 30px;
+    }
+
+    .logo-glow-ring {
+        width: 260px;
+        height: 260px;
+    }
+
+    .logo-glow-ring-outer {
+        width: 320px;
+        height: 320px;
+    }
+
+    .logo-particles {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-showcase {
+        margin-bottom: 20px;
+    }
+
+    .logo-glow-ring {
+        width: 210px;
+        height: 210px;
+    }
+
+    .logo-glow-ring-outer {
+        width: 265px;
+        height: 265px;
+    }
+
+    .logo-particles {
+        width: 180px;
+        height: 180px;
+    }
 }
