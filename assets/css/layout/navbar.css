@@ -9,18 +9,31 @@
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     padding: 20px 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.08);
     transition: all 0.3s ease;
 }
 
+/* Inner top highlight — "light catching glass edge" effect */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 30%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.12) 70%, transparent 100%);
+    pointer-events: none;
+}
+
 .navbar.scrolled {
-    padding: 15px 0;
-    background: rgba(0, 0, 0, 0.98);
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+    padding: 14px 0;
+    background: rgba(0, 0, 0, 0.97);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255,255,255,0.04);
 }
 
 .nav-container {
@@ -70,11 +83,12 @@
     content: '';
     position: absolute;
     bottom: -5px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #c0c0c0, #ffffff);
-    transition: width 0.3s ease;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ffffff, transparent);
+    transition: width 0.35s ease;
 }
 
 .nav-menu a:hover::after,

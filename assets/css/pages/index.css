@@ -10,6 +10,16 @@
     position: relative;
 }
 
+/* Dot grid texture */
+.what-we-do::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
 .section-header {
     text-align: center;
     margin-bottom: 80px;
@@ -17,21 +27,36 @@
 
 .section-tag {
     display: inline-block;
-    padding: 8px 20px;
-    border: 1px solid rgba(192, 192, 192, 0.3);
-    color: #a0a0a0;
-    font-size: 11px;
-    letter-spacing: 3px;
+    padding: 7px 18px;
+    border: 1px solid rgba(192, 192, 192, 0.15);
+    color: #808080;
+    font-size: 10px;
+    letter-spacing: 4px;
     margin-bottom: 20px;
-    background: rgba(192, 192, 192, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+    text-transform: uppercase;
+    position: relative;
 }
+
+/* Corner dots on section tag */
+.section-tag::before,
+.section-tag::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(192, 192, 192, 0.4);
+    border-radius: 50%;
+}
+.section-tag::before { top: -2px; left: -2px; }
+.section-tag::after  { bottom: -2px; right: -2px; }
 
 .section-title {
     font-size: 48px;
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-bottom: 20px;
-    background: linear-gradient(135deg, #ffffff, #808080);
+    background: linear-gradient(160deg, #ffffff 0%, #ffffff 40%, #606060 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -54,20 +79,21 @@
 .service-showcase-card {
     position: relative;
     padding: 50px 35px;
-    background: linear-gradient(135deg, #0a0a0a, #050505);
-    border: 1px solid rgba(192, 192, 192, 0.1);
-    transition: all 0.5s ease;
+    background: linear-gradient(135deg, #0c0c0c, #060606);
+    border: 1px solid rgba(192, 192, 192, 0.07);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     overflow: hidden;
 }
 
+/* Top edge reveal on hover */
 .service-showcase-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #c0c0c0, #808080);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
     transform: scaleX(0);
     transition: transform 0.5s ease;
 }
@@ -76,10 +102,32 @@
     transform: scaleX(1);
 }
 
+/* Corner bracket — top left */
+.service-showcase-card::after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 18px;
+    height: 18px;
+    border-top: 1px solid rgba(192, 192, 192, 0.25);
+    border-left: 1px solid rgba(192, 192, 192, 0.25);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
+
+.service-showcase-card:hover::after {
+    width: 26px;
+    height: 26px;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
 .service-showcase-card:hover {
-    transform: translateY(-15px);
-    border-color: rgba(192, 192, 192, 0.3);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    transform: translateY(-12px);
+    border-color: rgba(192, 192, 192, 0.18);
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
 }
 
 
@@ -92,7 +140,7 @@
   height: 200%;
   background: radial-gradient(
     circle,
-    rgba(99, 102, 241, 0.15) 0%,
+    rgba(40, 40, 40, 0.3) 0%,
     transparent 70%
   );
   opacity: 0;
@@ -552,38 +600,6 @@
   filter: none;
 }
 
-/* ADD AFTER .service-showcase-card definition */
-.service-showcase-card {
-  position: relative;
-  overflow: hidden;
-  /* ...keep existing styles... */
-}
-
-/* ADD THIS NEW PSEUDO-ELEMENT */
-.service-showcase-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -150%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(99, 102, 241, 0.1),
-    transparent
-  );
-  transform: rotate(45deg);
-  transition: 0.6s;
-}
-
-.service-showcase-card:hover::before {
-  left: 150%;
-}
-
-/* REPLACE or UPDATE existing hover */
-.service-showcase-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: var(--shadow-primary);
-  border-color: var(--color-primary);
-}
+/* ===================================
+   END OF INDEX PAGE STYLES
+   =================================== */

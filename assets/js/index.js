@@ -170,24 +170,50 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add fade-in animation to sections
-const fadeObserver = new IntersectionObserver((entries) => {
+// =============================================
+// SCROLL REVEAL — applies across all pages
+// =============================================
+const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
         }
     });
 }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
 });
 
-document.querySelectorAll('.service-showcase-card, .testimonial-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    fadeObserver.observe(card);
+const revealStyle = document.createElement('style');
+revealStyle.textContent = `
+    .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+`;
+document.head.appendChild(revealStyle);
+
+document.querySelectorAll(
+    '.service-showcase-card, .testimonial-card, .stat-card, .value-card, ' +
+    '.service-card, .position-card, .pricing-card, .portfolio-card, ' +
+    '.benefit-card, .addon-card, .faq-item, .process-step, ' +
+    '.content-block, .info-item, .member-card'
+).forEach((el, i) => {
+    el.classList.add('reveal');
+    if (i % 4 === 1) el.classList.add('reveal-delay-1');
+    if (i % 4 === 2) el.classList.add('reveal-delay-2');
+    if (i % 4 === 3) el.classList.add('reveal-delay-3');
+    revealObserver.observe(el);
 });
 
 // Button ripple effect
@@ -323,20 +349,75 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Console welcome message
+// =============================================
+// MAGNETIC BUTTONS — subtle pull toward cursor
+// =============================================
+document.querySelectorAll('.hero-cta, .mega-cta, .cta-button, .package-btn').forEach(btn => {
+    btn.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const cx = rect.left + rect.width  / 2;
+        const cy = rect.top  + rect.height / 2;
+        const dx = (e.clientX - cx) * 0.22;
+        const dy = (e.clientY - cy) * 0.22;
+        this.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+    btn.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+    });
+});
+
+// =============================================
+// PAGE TRANSITION — smooth fade out on navigate
+// =============================================
+const overlay = document.createElement('div');
+overlay.style.cssText = `
+    position: fixed; inset: 0; background: #000;
+    opacity: 0; pointer-events: none;
+    z-index: 99990; transition: opacity 0.35s ease;
+`;
+document.body.appendChild(overlay);
+
+document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('http') || link.target === '_blank') return;
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dest = this.href;
+        overlay.style.pointerEvents = 'all';
+        overlay.style.opacity = '1';
+        setTimeout(() => { window.location.href = dest; }, 350);
+    });
+});
+
+window.addEventListener('pageshow', () => {
+    overlay.style.opacity = '0';
+    overlay.style.pointerEvents = 'none';
+});
+
+
 console.log('%c🚀 Welcome to Prodizy Tech!', 'background: #000; color: #c0c0c0; font-size: 24px; padding: 15px; border: 2px solid #c0c0c0; font-weight: bold;');
 console.log('%cIgnite Innovation 💡', 'color: #a0a0a0; font-size: 16px; padding: 5px;');
 
-// Add cursor trail effect (optional)
+// =============================================
+// CURSOR TRAIL — maroon smoke effect
+// =============================================
+const trailAnimation = document.createElement('style');
+trailAnimation.textContent = `
+    @keyframes trailFade {
+        0%   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    }
+`;
+document.head.appendChild(trailAnimation);
+
 document.addEventListener('mousemove', (e) => {
     if (window.innerWidth > 768) {
         const trail = document.createElement('div');
-        trail.className = 'cursor-trail';
         trail.style.cssText = `
             position: fixed;
             width: 5px;
             height: 5px;
-            background: rgba(152, 55, 55, 0.3);
+            background: rgba(152, 55, 55, 0.35);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -345,29 +426,12 @@ document.addEventListener('mousemove', (e) => {
             transform: translate(-50%, -50%);
             animation: trailFade 1s forwards;
         `;
-        
         document.body.appendChild(trail);
-        
-        setTimeout(() => {
-            trail.remove();
-        }, 1000);
+        setTimeout(() => trail.remove(), 1000);
     }
 });
 
-const trailAnimation = document.createElement('style');
-trailAnimation.textContent = `
-    @keyframes trailFade {
-        0% {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-        100% {
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(trailAnimation);
+
 
 // Preloader - Shows only ONCE per session
 window.addEventListener('load', function() {
@@ -398,6 +462,3 @@ window.addEventListener('load', function() {
         }
     }
 });
-
-
-

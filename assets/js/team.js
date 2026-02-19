@@ -43,7 +43,7 @@
 //   • Re-draw on window resize (debounced)
 //
 // Connection map — each entry is { parent: selector, children: [selector, …] }
-// "selector" targets the .member-card element inside an .org-member.
+// "selector" targets the .org-member element.
 // ─────────────────────────────────────────────────────────────
 
 const CONNECTION_MAP = [
@@ -66,7 +66,6 @@ const CONNECTION_MAP = [
             ".level-3 .org-member:nth-child(2)",
         ],
     },
-
 ];
 
 // Stroke style constants
@@ -91,18 +90,18 @@ function ensureSvg() {
         chart.insertBefore(svg, chart.firstChild);
     }
 
-    // Match chart dimensions (the SVG is position:absolute filling the chart)
-    svg.setAttribute("width", chart.offsetWidth);
-    svg.setAttribute("height", chart.scrollHeight);
-
+    // Do NOT set width/height here — drawConnectors handles that
+    // after measuring, so getBoundingClientRect() reads clean values.
     return svg;
 }
 
 /**
- * Returns the centre-bottom point of an element relative to the chart.
+ * Returns the centre-bottom of the CARD (not the wrapper) relative to chart.
+ * X is taken from the card for accurate centering.
+ * Y is r.bottom so the line starts exactly at the card's bottom edge.
  */
-function bottomCentre(el, chartRect) {
-    const r = el.getBoundingClientRect();
+function bottomCentre(cardEl, chartRect) {
+    const r = cardEl.getBoundingClientRect();
     return {
         x: r.left - chartRect.left + r.width / 2,
         y: r.bottom - chartRect.top,
@@ -110,10 +109,11 @@ function bottomCentre(el, chartRect) {
 }
 
 /**
- * Returns the centre-top point of an element relative to the chart.
+ * Returns the centre-top of the CARD relative to chart.
+ * Y is r.top so the line ends exactly at the card's top edge.
  */
-function topCentre(el, chartRect) {
-    const r = el.getBoundingClientRect();
+function topCentre(cardEl, chartRect) {
+    const r = cardEl.getBoundingClientRect();
     return {
         x: r.left - chartRect.left + r.width / 2,
         y: r.top - chartRect.top,
@@ -142,15 +142,33 @@ function drawConnectors() {
     const svgEl = ensureSvg();
     if (!svgEl) return;
 
-    // Clear previous paths
+    // ── Step 1: Clear previous paths ──
     while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+
+    // ── Step 2: Collapse SVG to zero before measuring ──
+    // The SVG is position:absolute but can still subtly influence layout
+    // during getBoundingClientRect() reads. Setting it to 0x0 first
+    // ensures cards report their true positions with no SVG interference.
+    svgEl.setAttribute("width", "0");
+    svgEl.setAttribute("height", "0");
+
+    // ── Step 3: Flush layout, then measure ──
+    // Accessing getBoundingClientRect() forces the browser to apply the
+    // zero-size above before we take our real measurements below.
+    chart.getBoundingClientRect(); // flush
 
     const chartRect = chart.getBoundingClientRect();
 
+    // ── Step 4: Now safe to set final SVG dimensions ──
+    svgEl.setAttribute("width", chart.offsetWidth);
+    svgEl.setAttribute("height", chart.offsetHeight);
+
+    // ── Step 4: Draw connectors ──
     CONNECTION_MAP.forEach(({ parent: parentSel, children: childSels }) => {
         const parentEl = chart.querySelector(parentSel);
         if (!parentEl) return;
 
+        // Measure from the .member-card inside the org-member wrapper
         const parentCard = parentEl.querySelector(".member-card") || parentEl;
 
         // Resolve child elements, skipping any that don't exist
@@ -164,25 +182,33 @@ function drawConnectors() {
             (el) => el.querySelector(".member-card") || el
         );
 
-        const parentBottom = bottomCentre(parentCard, chartRect);
+        // For X: use card centre. For Y: use the org-member WRAPPER bottom
+        // so the line starts right where the wrapper ends, not inside it.
+        const parentBottom = {
+            x: bottomCentre(parentCard, chartRect).x,
+            y: parentEl.getBoundingClientRect().bottom - chartRect.top,
+        };
         const childTops = childCards.map((c) => topCentre(c, chartRect));
 
-        // Mid-point Y of the vertical gap between parent and children
-        const railY = (parentBottom.y + Math.min(...childTops.map((c) => c.y))) / 2;
+        // Place rail 50% into the gap — centred between parent and children.
+        // This gives a consistent look regardless of card height differences.
+        // Adjust between 0 (flush to parent) and 1 (flush to children).
+        const minChildY = Math.min(...childTops.map((c) => c.y));
+        const railY = parentBottom.y + (minChildY - parentBottom.y) * 0.5;
 
-        // Vertical line down from parent
+        // Vertical line down from parent to rail
         svgEl.appendChild(line(parentBottom.x, parentBottom.y, parentBottom.x, railY));
 
         if (childTops.length === 1) {
             // Single child: straight vertical, no horizontal rail needed
             svgEl.appendChild(line(childTops[0].x, railY, childTops[0].x, childTops[0].y));
         } else {
-            // Horizontal rail
+            // Horizontal rail spanning all children
             const leftX = Math.min(...childTops.map((c) => c.x));
             const rightX = Math.max(...childTops.map((c) => c.x));
             svgEl.appendChild(line(leftX, railY, rightX, railY));
 
-            // Vertical lines up to each child
+            // Vertical lines down from rail to each child
             childTops.forEach((ct) => {
                 svgEl.appendChild(line(ct.x, railY, ct.x, ct.y));
             });
@@ -209,16 +235,25 @@ function scheduleRedraw() {
     });
 }
 
-const chartEl = getChartEl();
-if (chartEl && typeof ResizeObserver !== "undefined") {
-    const ro = new ResizeObserver(scheduleRedraw);
-    ro.observe(chartEl);
-    // Also observe each org-level so shuffled card order changes trigger a redraw
-    chartEl.querySelectorAll(".org-level").forEach((el) => ro.observe(el));
-} else {
-    // Fallback for old browsers
-    window.addEventListener("resize", () => scheduleRedraw());
-}
+// ── Attach observers after DOM is ready ──────────────────────
+// Moved inside DOMContentLoaded so getChartEl() is guaranteed to find
+// the element (previously called at module scope before DOM was parsed
+// if the script appeared in <head>).
+
+document.addEventListener("DOMContentLoaded", function () {
+    const chartEl = getChartEl();
+    if (!chartEl) return;
+
+    if (typeof ResizeObserver !== "undefined") {
+        const ro = new ResizeObserver(scheduleRedraw);
+        ro.observe(chartEl);
+        // Also observe each org-level so shuffled card order changes trigger a redraw
+        chartEl.querySelectorAll(".org-level").forEach((el) => ro.observe(el));
+    } else {
+        // Fallback for old browsers
+        window.addEventListener("resize", scheduleRedraw);
+    }
+});
 
 // Initial draw — wait for images to load so card heights are final
 window.addEventListener("load", scheduleRedraw);
