@@ -173,18 +173,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // =============================================
 // SCROLL REVEAL — applies across all pages
 // =============================================
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -40px 0px'
-});
-
 const revealStyle = document.createElement('style');
 revealStyle.textContent = `
     .reveal {
@@ -203,17 +191,48 @@ revealStyle.textContent = `
 `;
 document.head.appendChild(revealStyle);
 
-document.querySelectorAll(
-    '.service-showcase-card, .testimonial-card, .stat-card, .value-card, ' +
-    '.service-card, .position-card, .pricing-card, .portfolio-card, ' +
-    '.benefit-card, .addon-card, .faq-item, .process-step, ' +
-    '.content-block, .info-item, .member-card'
-).forEach((el, i) => {
-    el.classList.add('reveal');
-    if (i % 4 === 1) el.classList.add('reveal-delay-1');
-    if (i % 4 === 2) el.classList.add('reveal-delay-2');
-    if (i % 4 === 3) el.classList.add('reveal-delay-3');
-    revealObserver.observe(el);
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.05,
+    rootMargin: '0px 0px 0px 0px'
+});
+
+// Double rAF ensures layout is fully painted before we check positions.
+// This fixes the refresh bug: on fast/cached reloads, getBoundingClientRect()
+// returns 0 synchronously, so the viewport check fails and cards stay opacity:0.
+requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+        document.querySelectorAll(
+            '.testimonial-card, .stat-card, .value-card, ' +
+            '.service-card, .position-card, .pricing-card, .portfolio-card, ' +
+            '.benefit-card, .addon-card, .faq-item, .process-step, ' +
+            '.content-block, .info-item, .member-card'
+        ).forEach((el, i) => {
+            if (i % 4 === 1) el.classList.add('reveal-delay-1');
+            if (i % 4 === 2) el.classList.add('reveal-delay-2');
+            if (i % 4 === 3) el.classList.add('reveal-delay-3');
+
+            // Check viewport BEFORE adding .reveal so already-visible elements
+            // never flash invisible then reappear
+            const rect = el.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (inView) {
+                // Already visible — reveal immediately with no flash
+                el.classList.add('reveal', 'revealed');
+            } else {
+                // Below fold — hide and watch for scroll
+                el.classList.add('reveal');
+                revealObserver.observe(el);
+            }
+        });
+    });
 });
 
 // Button ripple effect

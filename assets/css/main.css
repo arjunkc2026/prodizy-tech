@@ -2,9 +2,6 @@
    MAIN CSS - IMPORT CENTRAL
    Imports all modular CSS files
    =================================== */
- /* ADD AT TOP - Premium fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap'); 
 
 /* Design Tokens */
 @import url('variables.css');
@@ -305,9 +302,9 @@
         }
 
         .portfolio-card:hover {
-            border-color: rgba(192, 192, 192, 0.3);
+            border-color: rgba(255, 200, 0, 0.5);
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 180, 0, 0.15);
         }
 
         .portfolio-image {
@@ -330,7 +327,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), transparent);
+            background: linear-gradient(135deg, rgba(255, 200, 0, 0.08), transparent);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
@@ -399,9 +396,9 @@
         }
 
         .portfolio-link:hover {
-            border-color: #c0c0c0;
-            color: #ffffff;
-            box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+            border-color: rgba(255, 200, 0, 0.8);
+            color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 200, 0, 0.3);
         }
 
         .filter-buttons {
@@ -426,9 +423,9 @@
 
         .filter-btn:hover,
         .filter-btn.active {
-            background: rgba(192, 192, 192, 0.2);
-            border-color: rgba(192, 192, 192, 0.5);
-            color: #ffffff;
+            background: rgba(255, 200, 0, 0.1);
+            border-color: rgba(255, 200, 0, 0.5);
+            color: #ffd700;
         }
 
         .careers-intro {
@@ -470,8 +467,9 @@
         }
 
         .benefit-card:hover {
-            border-color: rgba(192, 192, 192, 0.3);
+            border-color: rgba(255, 200, 0, 0.4);
             transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(255, 180, 0, 0.15);
         }
 
         .benefit-icon {
@@ -506,8 +504,9 @@
         }
 
         .position-card:hover {
-            border-color: rgba(192, 192, 192, 0.3);
+            border-color: rgba(255, 200, 0, 0.4);
             transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(255, 180, 0, 0.15);
         }
 
         .position-header {

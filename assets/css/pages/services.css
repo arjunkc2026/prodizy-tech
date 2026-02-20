@@ -24,9 +24,9 @@
 }
 
 .service-card:hover {
-    border-color: rgba(192, 192, 192, 0.4);
+    border-color: rgba(255, 200, 0, 0.5);
     transform: translateY(-10px);
-    box-shadow: 0 10px 40px rgba(192, 192, 192, 0.2);
+    box-shadow: 0 10px 40px rgba(255, 180, 0, 0.2), 0 0 0 1px rgba(255, 200, 0, 0.1) inset;
 }
 
 .service-icon {
@@ -74,9 +74,9 @@
 }
 
 .service-btn:hover {
-    border-color: #c0c0c0;
-    color: #ffffff;
-    box-shadow: 0 0 20px rgba(192, 192, 192, 0.3);
+    border-color: rgba(255, 200, 0, 0.8);
+    color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 200, 0, 0.3);
 }
 
 
@@ -103,8 +103,9 @@
 }
 
 .process-step:hover {
-    border-color: rgba(192, 192, 192, 0.3);
+    border-color: rgba(255, 200, 0, 0.4);
     transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 180, 0, 0.15);
 }
 
 .step-number {

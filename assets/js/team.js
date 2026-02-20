@@ -10,12 +10,12 @@
 
 (function shuffleCsuite() {
     const combinations = [
-        ["cfo", "cto", "coo"],
-        ["cfo", "coo", "cto"],
         ["coo", "cfo", "cto"],
+        ["cfo", "cto", "coo"],
         ["cto", "coo", "cfo"],
-        ["cto", "cfo", "coo"],
         ["coo", "cto", "cfo"],
+        ["cfo", "coo", "cto"],
+        ["cto", "cfo", "coo"],
     ];
 
     const today = new Date();

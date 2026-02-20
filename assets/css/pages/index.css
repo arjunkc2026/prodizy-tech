@@ -85,8 +85,8 @@
     overflow: hidden;
 }
 
-/* Top edge reveal on hover */
-.service-showcase-card::before {
+/* Top edge reveal — scoped to avoid conflict with cursor.js .glow-card pseudo-elements */
+.service-showcase-card:not(.glow-card)::before {
     content: '';
     position: absolute;
     top: 0;
@@ -96,14 +96,14 @@
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
     transform: scaleX(0);
     transition: transform 0.5s ease;
+    z-index: 1;
 }
-
-.service-showcase-card:hover::before {
+.service-showcase-card:not(.glow-card):hover::before {
     transform: scaleX(1);
 }
 
-/* Corner bracket — top left */
-.service-showcase-card::after {
+/* Corner bracket — scoped to avoid conflict with cursor.js .glow-card pseudo-elements */
+.service-showcase-card:not(.glow-card)::after {
     content: '';
     position: absolute;
     top: 14px;
@@ -115,8 +115,7 @@
     transition: all 0.4s ease;
     pointer-events: none;
 }
-
-.service-showcase-card:hover::after {
+.service-showcase-card:not(.glow-card):hover::after {
     width: 26px;
     height: 26px;
     border-color: rgba(255, 255, 255, 0.5);
@@ -124,14 +123,14 @@
 
 .service-showcase-card:hover {
     transform: translateY(-12px);
-    border-color: rgba(192, 192, 192, 0.18);
-    box-shadow: 
+    border-color: rgba(255, 200, 0, 0.4);
+    box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.95),
-        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+        0 0 40px rgba(255, 180, 0, 0.15),
+        0 0 0 1px rgba(255, 200, 0, 0.1) inset;
 }
 
 
-/* REPLACE entire .card-glow with this: */
 .card-glow {
   position: absolute;
   top: -50%;
@@ -145,6 +144,8 @@
   );
   opacity: 0;
   transition: opacity 0.5s ease;
+  z-index: -1 !important;
+  pointer-events: none;
 }
 
 .service-showcase-card:hover .card-glow {
@@ -175,6 +176,8 @@
     letter-spacing: 1px;
     margin-bottom: 15px;
     color: #ffffff;
+    position: relative;
+    z-index: 2;
 }
 
 .service-showcase-card p {
@@ -182,6 +185,15 @@
     font-size: 14px;
     line-height: 1.7;
     margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.service-showcase-card .card-icon,
+.service-showcase-card .card-number,
+.service-showcase-card .card-link {
+    position: relative;
+    z-index: 2;
 }
 
 .card-link {
@@ -384,8 +396,9 @@
 }
 
 .testimonial-card:hover {
-    border-color: rgba(192, 192, 192, 0.3);
+    border-color: rgba(255, 200, 0, 0.4);
     transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 180, 0, 0.15);
 }
 
 .quote-icon {
