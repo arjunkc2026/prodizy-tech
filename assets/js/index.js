@@ -1,36 +1,5 @@
-// Mobile Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-
-if (hamburger) {
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-}
-
-// Navbar scroll effect
-let lastScroll = 0;
+// Navbar reference (used by parallax below)
 const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-    
-    lastScroll = currentScroll;
-});
 
 // Canvas Particle Animation
 const canvas = document.getElementById('particleCanvas');
@@ -169,27 +138,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-// =============================================
-// SCROLL REVEAL — applies across all pages
-// =============================================
-const revealStyle = document.createElement('style');
-revealStyle.textContent = `
-    .reveal {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
-    }
-    .reveal.revealed {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-`;
-document.head.appendChild(revealStyle);
 
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -337,37 +285,6 @@ if (testimonialSlider && testimonialTrack) {
     });
 }
 
-// Add mobile menu styles
-const style = document.createElement('style');
-style.textContent = `
-    .nav-menu.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: rgba(0, 0, 0, 0.98);
-        padding: 20px;
-        border-radius: 8px;
-        border: 1px solid rgba(192, 192, 192, 0.2);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(20px);
-    }
-
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-`;
-document.head.appendChild(style);
-
 // =============================================
 // MAGNETIC BUTTONS — subtle pull toward cursor
 // =============================================
@@ -416,41 +333,6 @@ window.addEventListener('pageshow', () => {
 
 console.log('%c🚀 Welcome to Prodizy Tech!', 'background: #000; color: #c0c0c0; font-size: 24px; padding: 15px; border: 2px solid #c0c0c0; font-weight: bold;');
 console.log('%cIgnite Innovation 💡', 'color: #a0a0a0; font-size: 16px; padding: 5px;');
-
-// =============================================
-// CURSOR TRAIL — maroon smoke effect
-// =============================================
-const trailAnimation = document.createElement('style');
-trailAnimation.textContent = `
-    @keyframes trailFade {
-        0%   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-    }
-`;
-document.head.appendChild(trailAnimation);
-
-document.addEventListener('mousemove', (e) => {
-    if (window.innerWidth > 768) {
-        const trail = document.createElement('div');
-        trail.style.cssText = `
-            position: fixed;
-            width: 5px;
-            height: 5px;
-            background: rgba(152, 55, 55, 0.35);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            left: ${e.clientX}px;
-            top: ${e.clientY}px;
-            transform: translate(-50%, -50%);
-            animation: trailFade 1s forwards;
-        `;
-        document.body.appendChild(trail);
-        setTimeout(() => trail.remove(), 1000);
-    }
-});
-
-
 
 // Preloader - Shows only ONCE per session
 window.addEventListener('load', function() {
