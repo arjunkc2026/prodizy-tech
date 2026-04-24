@@ -27,7 +27,7 @@
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 100px; /* Original value */
     position: relative;
     z-index: 2;
 }
@@ -153,9 +153,18 @@
     color: #d4af37;
 }
 
+.level-1 .org-member .member-role {
+    color: #d4af37;
+}
+
 .level-2 .org-member .member-role {
     color: #d4af37;
 }
+
+.level-3 .org-member .member-role {
+    color: #d4af37;
+}
+
 
 .level-2b .org-member .member-role {
     color: #d4af37;

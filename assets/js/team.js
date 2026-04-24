@@ -1,249 +1,90 @@
-/* ============================================================
-   team.js  —  Prodizy Tech Team Page
-   
-   1. Daily-seeded shuffle of the Level-2 C-suite order
-   2. Dynamic SVG connector lines drawn from actual card positions
-      (replaces brittle hardcoded CSS pseudo-element widths)
-   ============================================================ */
+// Draw SVG connector lines between org chart levels
+function drawOrgConnectors() {
+    const existingSvg = document.getElementById('org-svg');
+    if (existingSvg) existingSvg.remove();
 
-// ── 1. C-suite daily shuffle ──────────────────────────────────
-
-// Fixed order: COO (left), CTO (center), CFO (right)
-(function fixCsuiteOrder() {
-    const order = ["coo", "cto", "cfo"];
-    order.forEach((id, index) => {
-        const card = document.getElementById("card-" + id);
-        if (card) card.style.order = index;
-    });
-})();
-
-
-// ── 2. SVG connector lines ────────────────────────────────────
-//
-// Strategy:
-//   • Insert one <svg class="org-connectors"> as first child of .org-chart
-//   • After layout settles (requestAnimationFrame inside a setTimeout),
-//     measure every card's bounding rect relative to the chart container
-//   • Draw:
-//       – A vertical line from the bottom-centre of each parent card down
-//         to the horizontal rail
-//       – A horizontal rail spanning from leftmost to rightmost child
-//       – A vertical line from the rail up to the top-centre of each child
-//   • Re-draw on window resize (debounced)
-//
-// Connection map — each entry is { parent: selector, children: [selector, …] }
-// "selector" targets the .org-member element.
-// ─────────────────────────────────────────────────────────────
-
-const CONNECTION_MAP = [
-    {
-        parent: ".level-1 .org-member",
-        children: [
-            "#card-cfo",
-            "#card-cto",
-            "#card-coo",
-        ],
-    },
-    {
-        parent: ".level-1 .org-member",
-        children: [".level-2b .org-member"],
-    },
-    {
-        parent: ".level-2b .org-member",
-        children: [
-            ".level-3 .org-member:nth-child(1)",
-            ".level-3 .org-member:nth-child(2)",
-        ],
-    },
-];
-
-// Stroke style constants
-const STROKE = "rgba(192,192,192,0.45)";
-const STROKE_WIDTH = 1.5;
-
-let svg = null;
-
-function getChartEl() {
-    return document.querySelector(".org-chart");
-}
-
-function ensureSvg() {
-    const chart = getChartEl();
-    if (!chart) return null;
-
-    if (!svg) {
-        svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.classList.add("org-connectors");
-        svg.setAttribute("aria-hidden", "true");
-        // Insert as first child so cards render on top via z-index
-        chart.insertBefore(svg, chart.firstChild);
-    }
-
-    // Do NOT set width/height here — drawConnectors handles that
-    // after measuring, so getBoundingClientRect() reads clean values.
-    return svg;
-}
-
-/**
- * Returns the centre-bottom of the CARD (not the wrapper) relative to chart.
- * X is taken from the card for accurate centering.
- * Y is r.bottom so the line starts exactly at the card's bottom edge.
- */
-function bottomCentre(cardEl, chartRect) {
-    const r = cardEl.getBoundingClientRect();
-    return {
-        x: r.left - chartRect.left + r.width / 2,
-        y: r.bottom - chartRect.top,
-    };
-}
-
-/**
- * Returns the centre-top of the CARD relative to chart.
- * Y is r.top so the line ends exactly at the card's top edge.
- */
-function topCentre(cardEl, chartRect) {
-    const r = cardEl.getBoundingClientRect();
-    return {
-        x: r.left - chartRect.left + r.width / 2,
-        y: r.top - chartRect.top,
-    };
-}
-
-function line(x1, y1, x2, y2) {
-    const el = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    el.setAttribute("x1", Math.round(x1));
-    el.setAttribute("y1", Math.round(y1));
-    el.setAttribute("x2", Math.round(x2));
-    el.setAttribute("y2", Math.round(y2));
-    el.setAttribute("stroke", STROKE);
-    el.setAttribute("stroke-width", STROKE_WIDTH);
-    el.setAttribute("stroke-linecap", "round");
-    return el;
-}
-
-function drawConnectors() {
-    // Don't draw on mobile (CSS hides the SVG anyway, but skip the work)
+    // Hide connectors on mobile (<=768px)
     if (window.innerWidth <= 768) return;
 
-    const chart = getChartEl();
+    const chart = document.querySelector('.org-chart');
     if (!chart) return;
-
-    const svgEl = ensureSvg();
-    if (!svgEl) return;
-
-    // ── Step 1: Clear previous paths ──
-    while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
-
-    // ── Step 2: Collapse SVG to zero before measuring ──
-    // The SVG is position:absolute but can still subtly influence layout
-    // during getBoundingClientRect() reads. Setting it to 0x0 first
-    // ensures cards report their true positions with no SVG interference.
-    svgEl.setAttribute("width", "0");
-    svgEl.setAttribute("height", "0");
-
-    // ── Step 3: Flush layout, then measure ──
-    // Accessing getBoundingClientRect() forces the browser to apply the
-    // zero-size above before we take our real measurements below.
-    chart.getBoundingClientRect(); // flush
-
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.id = 'org-svg';
+    svg.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;';
+    chart.style.position = 'relative';
+    chart.insertBefore(svg, chart.firstChild);
     const chartRect = chart.getBoundingClientRect();
-
-    // ── Step 4: Now safe to set final SVG dimensions ──
-    svgEl.setAttribute("width", chart.offsetWidth);
-    svgEl.setAttribute("height", chart.offsetHeight);
-
-    // ── Step 4: Draw connectors ──
-    CONNECTION_MAP.forEach(({ parent: parentSel, children: childSels }) => {
-        const parentEl = chart.querySelector(parentSel);
-        if (!parentEl) return;
-
-        // Measure from the .member-card inside the org-member wrapper
-        const parentCard = parentEl.querySelector(".member-card") || parentEl;
-
-        // Resolve child elements, skipping any that don't exist
-        const childEls = childSels
-            .map((sel) => chart.querySelector(sel))
-            .filter(Boolean);
-
-        if (childEls.length === 0) return;
-
-        const childCards = childEls.map(
-            (el) => el.querySelector(".member-card") || el
-        );
-
-        // For X: use card centre. For Y: use the org-member WRAPPER bottom
-        // so the line starts right where the wrapper ends, not inside it.
-        const parentBottom = {
-            x: bottomCentre(parentCard, chartRect).x,
-            y: parentEl.getBoundingClientRect().bottom - chartRect.top,
+    function getCenter(el) {
+        const r = el.getBoundingClientRect();
+        const GAP = 12;
+        return {
+            x: r.left - chartRect.left + r.width / 2,
+            top: r.top - chartRect.top - GAP,
+            bottom: r.top - chartRect.top + r.height + GAP,
+            mid: r.top - chartRect.top + r.height / 2
         };
-        const childTops = childCards.map((c) => topCentre(c, chartRect));
-
-        // Place rail 50% into the gap — centred between parent and children.
-        // This gives a consistent look regardless of card height differences.
-        // Adjust between 0 (flush to parent) and 1 (flush to children).
-        const minChildY = Math.min(...childTops.map((c) => c.y));
-        const railY = parentBottom.y + (minChildY - parentBottom.y) * 0.5;
-
-        // Vertical line down from parent to rail
-        svgEl.appendChild(line(parentBottom.x, parentBottom.y, parentBottom.x, railY));
-
-        if (childTops.length === 1) {
-            // Single child: straight vertical, no horizontal rail needed
-            svgEl.appendChild(line(childTops[0].x, railY, childTops[0].x, childTops[0].y));
-        } else {
-            // Horizontal rail spanning all children
-            const leftX = Math.min(...childTops.map((c) => c.x));
-            const rightX = Math.max(...childTops.map((c) => c.x));
-            svgEl.appendChild(line(leftX, railY, rightX, railY));
-
-            // Vertical lines down from rail to each child
-            childTops.forEach((ct) => {
-                svgEl.appendChild(line(ct.x, railY, ct.x, ct.y));
-            });
-        }
-    });
-}
-
-// ── Reliable redraw using ResizeObserver ─────────────────────
-//
-// ResizeObserver fires whenever the chart container itself changes
-// dimensions — catches devtools open/close, orientation changes,
-// and window resizes far more reliably than window "resize" alone.
-// The double-rAF ensures getBoundingClientRect() reads post-layout values.
-
-let rafId = null;
-
-function scheduleRedraw() {
-    if (rafId) cancelAnimationFrame(rafId);
-    rafId = requestAnimationFrame(() => {
-        rafId = requestAnimationFrame(() => {
-            drawConnectors();
-            rafId = null;
-        });
-    });
-}
-
-// ── Attach observers after DOM is ready ──────────────────────
-// Moved inside DOMContentLoaded so getChartEl() is guaranteed to find
-// the element (previously called at module scope before DOM was parsed
-// if the script appeared in <head>).
-
-document.addEventListener("DOMContentLoaded", function () {
-    const chartEl = getChartEl();
-    if (!chartEl) return;
-
-    if (typeof ResizeObserver !== "undefined") {
-        const ro = new ResizeObserver(scheduleRedraw);
-        ro.observe(chartEl);
-        // Also observe each org-level so shuffled card order changes trigger a redraw
-        chartEl.querySelectorAll(".org-level").forEach((el) => ro.observe(el));
-    } else {
-        // Fallback for old browsers
-        window.addEventListener("resize", scheduleRedraw);
     }
-});
+    function line(x1, y1, x2, y2) {
+        const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+        l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+        l.setAttribute('stroke', '#c9a84c');
+        l.setAttribute('stroke-width', '2.5');
+        l.setAttribute('stroke-opacity', '0.85');
+        svg.appendChild(l);
+    }
+    const level1Cards = document.querySelectorAll('.level-1 .member-card');
+    const level2Cards = document.querySelectorAll('.level-2 .member-card');
+    const level3Cards = document.querySelectorAll('.level-3 .member-card');
+    if (!level1Cards.length || !level2Cards.length) return;
+    const l1Centers = Array.from(level1Cards).map(getCenter);
+    const l2Centers = Array.from(level2Cards).map(getCenter);
+    const l3Centers = Array.from(level3Cards).map(getCenter);
 
-// Initial draw — wait for images to load so card heights are final
-window.addEventListener("load", scheduleRedraw);
-if (document.readyState === "complete") scheduleRedraw();
+    // Level 1 -> Level 2: single horizontal bar at midpoint of the gap
+    const maxL1Bottom = Math.max(...l1Centers.map(c => c.bottom));
+    const minL2Top = Math.min(...l2Centers.map(c => c.top));
+    const midY1 = (maxL1Bottom + minL2Top) / 2;
+    const midX1 = (l1Centers[0].x + l1Centers[l1Centers.length - 1].x) / 2;
+
+    // Drop lines from L1 cards down to the single horizontal bar
+    l1Centers.forEach(c => line(c.x, c.bottom, c.x, midY1));
+
+    // Single horizontal bar connecting L1 drops
+    if (l1Centers.length > 1) {
+        line(l1Centers[0].x, midY1, l1Centers[l1Centers.length - 1].x, midY1);
+    }
+
+    // Single horizontal bar spanning L2 cards
+    line(l2Centers[0].x, midY1, l2Centers[l2Centers.length - 1].x, midY1);
+
+    // Drop lines down from horizontal bar to each L2 card
+    l2Centers.forEach(c => line(c.x, midY1, c.x, c.top));
+
+    // Level 2 -> Level 3: single horizontal bar at midpoint of the gap
+    if (l3Centers.length) {
+        const maxL2Bottom = Math.max(...l2Centers.map(c => c.bottom));
+        const minL3Top = Math.min(...l3Centers.map(c => c.top));
+        const midY2 = (maxL2Bottom + minL3Top) / 2;
+        const midX2 = (l2Centers[0].x + l2Centers[l2Centers.length - 1].x) / 2;
+
+        // Drop lines from L2 cards down to the single horizontal bar
+        l2Centers.forEach(c => line(c.x, c.bottom, c.x, midY2));
+
+        // Single horizontal bar spanning L2 and L3 cards
+        const barLeft = Math.min(l2Centers[0].x, l3Centers[0].x);
+        const barRight = Math.max(l2Centers[l2Centers.length - 1].x, l3Centers[l3Centers.length - 1].x);
+        line(barLeft, midY2, barRight, midY2);
+
+        // Drop lines down from horizontal bar to each L3 card
+        l3Centers.forEach(c => line(c.x, midY2, c.x, c.top));
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for images/layout to settle
+    setTimeout(drawOrgConnectors, 300);
+});
+window.addEventListener('resize', () => {
+    setTimeout(drawOrgConnectors, 100);
+});
