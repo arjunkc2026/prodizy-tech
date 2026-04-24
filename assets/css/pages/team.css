@@ -27,7 +27,7 @@
     justify-content: center;
     align-items: flex-start;
     gap: 40px;
-    margin-bottom: 100px; /* Original value */
+    margin-bottom: 150px; /* Original value */
     position: relative;
     z-index: 2;
 }

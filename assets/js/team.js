@@ -21,7 +21,6 @@ function drawOrgConnectors() {
             x: r.left - chartRect.left + r.width / 2,
             top: r.top - chartRect.top - GAP,
             bottom: r.top - chartRect.top + r.height + GAP,
-            mid: r.top - chartRect.top + r.height / 2
         };
     }
     function line(x1, y1, x2, y2) {
@@ -33,6 +32,7 @@ function drawOrgConnectors() {
         l.setAttribute('stroke-opacity', '0.85');
         svg.appendChild(l);
     }
+
     const level1Cards = document.querySelectorAll('.level-1 .member-card');
     const level2Cards = document.querySelectorAll('.level-2 .member-card');
     const level3Cards = document.querySelectorAll('.level-3 .member-card');
@@ -41,48 +41,41 @@ function drawOrgConnectors() {
     const l2Centers = Array.from(level2Cards).map(getCenter);
     const l3Centers = Array.from(level3Cards).map(getCenter);
 
-    // Level 1 -> Level 2: single horizontal bar at midpoint of the gap
+    // Level 1 -> Level 2
+    // Use the tallest card bottom & highest card top to get a truly even gap
     const maxL1Bottom = Math.max(...l1Centers.map(c => c.bottom));
-    const minL2Top = Math.min(...l2Centers.map(c => c.top));
-    const midY1 = (maxL1Bottom + minL2Top) / 2;
-    const midX1 = (l1Centers[0].x + l1Centers[l1Centers.length - 1].x) / 2;
+    const minL2Top    = Math.min(...l2Centers.map(c => c.top));
+    const midY1 = maxL1Bottom + (minL2Top - maxL1Bottom) / 2;
 
-    // Drop lines from L1 cards down to the single horizontal bar
+    // Drop from each L1 card to the shared horizontal bar
     l1Centers.forEach(c => line(c.x, c.bottom, c.x, midY1));
-
-    // Single horizontal bar connecting L1 drops
+    // Horizontal bar spanning L1 cards
     if (l1Centers.length > 1) {
         line(l1Centers[0].x, midY1, l1Centers[l1Centers.length - 1].x, midY1);
     }
-
-    // Single horizontal bar spanning L2 cards
+    // Horizontal bar spanning L2 cards (same Y — one continuous line)
     line(l2Centers[0].x, midY1, l2Centers[l2Centers.length - 1].x, midY1);
-
-    // Drop lines down from horizontal bar to each L2 card
+    // Rise from bar up to each L2 card top
     l2Centers.forEach(c => line(c.x, midY1, c.x, c.top));
 
-    // Level 2 -> Level 3: single horizontal bar at midpoint of the gap
+    // Level 2 -> Level 3
     if (l3Centers.length) {
         const maxL2Bottom = Math.max(...l2Centers.map(c => c.bottom));
-        const minL3Top = Math.min(...l3Centers.map(c => c.top));
-        const midY2 = (maxL2Bottom + minL3Top) / 2;
-        const midX2 = (l2Centers[0].x + l2Centers[l2Centers.length - 1].x) / 2;
+        const minL3Top    = Math.min(...l3Centers.map(c => c.top));
+        const midY2 = maxL2Bottom + (minL3Top - maxL2Bottom) / 2;
 
-        // Drop lines from L2 cards down to the single horizontal bar
+        // Drop from each L2 card to the shared horizontal bar
         l2Centers.forEach(c => line(c.x, c.bottom, c.x, midY2));
-
-        // Single horizontal bar spanning L2 and L3 cards
-        const barLeft = Math.min(l2Centers[0].x, l3Centers[0].x);
+        // Horizontal bar spanning both L2 and L3 x-range
+        const barLeft  = Math.min(l2Centers[0].x, l3Centers[0].x);
         const barRight = Math.max(l2Centers[l2Centers.length - 1].x, l3Centers[l3Centers.length - 1].x);
         line(barLeft, midY2, barRight, midY2);
-
-        // Drop lines down from horizontal bar to each L3 card
+        // Rise from bar up to each L3 card top
         l3Centers.forEach(c => line(c.x, midY2, c.x, c.top));
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait for images/layout to settle
     setTimeout(drawOrgConnectors, 300);
 });
 window.addEventListener('resize', () => {
