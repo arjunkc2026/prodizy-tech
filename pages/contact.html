@@ -7,6 +7,11 @@
     <meta property="og:title" content="Contact Prodizy Tech">
     <meta property="og:description" content="Reach out to discuss your next website, marketing campaign, or tech project.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://prodizytech.com/assets/images/logo.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://prodizytech.com/assets/images/logo.png">
     <title>Contact Us | Start Your Project with Prodizy Tech</title>
     <link rel="canonical" href="https://prodizytech.com/contact">
     <!-- Google Fonts -->
@@ -14,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="icon" type="image/png" href="../assets/images/icons/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/images/icons/favicon.ico">
     <script src="../assets/js/components.js"></script>
     <!--Google Adsense-->
    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6019160195060741"
@@ -91,11 +96,10 @@
                             <label for="budget">Budget Range</label>
                             <select id="budget" name="budget">
                                 <option value="">Select budget range</option>
-                                <option value="under-50k">Under Rs.50,000</option>
+                                <option value="under-25k">Under Rs. 25,000</option>
+                                <option value="25k-50k">Rs.25,000 - Rs.50,000</option>
                                 <option value="50k-100k">Rs.50,000 - Rs.100,000</option>
-                                <option value="100k-250k">Rs.100,000 - Rs.250,000</option>
-                                <option value="250k-500k">Rs.250,000 - Rs.500,000</option>
-                                <option value="5lakhs-plus">Above Rs.5 Lakhs</option>
+                                <option value="1lakhs-plus">Above Rs.1 Lakhs</option>
                             </select>
                         </div>
 
@@ -244,9 +248,9 @@ window.addEventListener('DOMContentLoaded', function() {
         
         // Map package to budget
         const packageToBudget = {
-            'starter': 'under-50k',
-            'professional': '100k-250k',
-            'enterprise': '250k-500k',
+            'starter': 'under-25k',
+            'professional': '25k-50k',
+            'enterprise': '50k-100k',
             'custom': ''
         };
         storedBudget = packageToBudget[urlPackage];
@@ -267,9 +271,9 @@ window.addEventListener('DOMContentLoaded', function() {
     };
     
     const packageNames = {
-        'starter': 'Starter Package (Rs. 49,999)',
-        'professional': 'Professional Package (Rs. 1,29,999)',
-        'enterprise': 'Enterprise Package (Rs. 2,49,999)',
+        'starter': 'Starter Package (Rs. 24,999)',
+        'professional': 'Professional Package (Rs. 49,999)',
+        'enterprise': 'Enterprise Package (Rs. 99,999)',
         'custom': 'Custom Package'
     };
     
@@ -429,9 +433,9 @@ window.addEventListener('DOMContentLoaded', function() {
         };
         
         const packageNames = {
-            'starter': 'Starter Package (Rs. 49,999)',
-            'professional': 'Professional Package (Rs. 1,29,999)',
-            'enterprise': 'Enterprise Package (Rs. 2,49,999)',
+            'starter': 'Starter Package (Rs. 24,999)',
+            'professional': 'Professional Package (Rs. 74,999)',
+            'enterprise': 'Enterprise Package (Rs. 1,49,999)',
             'custom': 'Custom Package'
         };
         

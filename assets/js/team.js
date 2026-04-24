@@ -8,21 +8,10 @@
 
 // ── 1. C-suite daily shuffle ──────────────────────────────────
 
-(function shuffleCsuite() {
-    const combinations = [
-        ["coo", "cfo", "cto"],
-        ["cfo", "cto", "coo"],
-        ["cto", "coo", "cfo"],
-        ["coo", "cto", "cfo"],
-        ["cfo", "coo", "cto"],
-        ["cto", "cfo", "coo"],
-    ];
-
-    const today = new Date();
-    const seed = today.getFullYear() * 366 + today.getMonth() * 31 + today.getDate();
-    const combination = combinations[seed % combinations.length];
-
-    combination.forEach((id, index) => {
+// Fixed order: COO (left), CTO (center), CFO (right)
+(function fixCsuiteOrder() {
+    const order = ["coo", "cto", "cfo"];
+    order.forEach((id, index) => {
         const card = document.getElementById("card-" + id);
         if (card) card.style.order = index;
     });
